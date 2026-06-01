@@ -52,7 +52,7 @@ export default function Footer({ darkMode }) {
               <IconLinkedin size={18} />
             </a>
             <a
-              href="https://github.com/YOUR_GITHUB_USERNAME"
+              href="https://github.com/pallavikochar"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"

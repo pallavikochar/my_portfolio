@@ -41,7 +41,7 @@ const PROJECTS = [
       { label: 'Paths', value: '50K+' },
       { label: 'Barrier', value: '50%' },
     ],
-    github: 'https://github.com/YOUR_GITHUB_USERNAME/structured-product-valuation',
+    github: 'https://github.com/pallavikochar/structured-product-valuation',
     demo: null,
   },
   {
@@ -57,7 +57,7 @@ const PROJECTS = [
       { label: 'Conf.', value: '95%' },
       { label: 'Asset', value: 'SPY' },
     ],
-    github: 'https://github.com/YOUR_GITHUB_USERNAME/garch-var-modeling',
+    github: 'https://github.com/pallavikochar/garch-var-modeling',
     demo: null,
   },
   {
@@ -73,7 +73,7 @@ const PROJECTS = [
       { label: 'Type', value: 'NLP + Stats' },
       { label: 'Focus', value: 'Behavioral' },
     ],
-    github: 'https://github.com/YOUR_GITHUB_USERNAME/credit-card-ad-analysis',
+    github: 'https://github.com/pallavikochar/credit-card-ad-analysis',
     demo: null,
   },
 ]
@@ -120,15 +120,13 @@ function ProjectCard({ project, index, darkMode }) {
 
       <div className="p-6 flex flex-col flex-1">
         {/* Icon + title */}
-        <div className="flex items-start gap-4 mb-4">
+        <div className="flex items-center gap-3 mb-4">
           <div className={`p-2.5 rounded-xl bg-gradient-to-br ${project.color} flex-shrink-0`}>
             <Icon size={18} className="text-white" />
           </div>
-          <div>
-            <h3 className={`text-base font-semibold leading-snug ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-              {project.title}
-            </h3>
-          </div>
+          <h3 className={`text-base font-semibold leading-snug ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+            {project.title}
+          </h3>
         </div>
 
         {/* Metrics */}

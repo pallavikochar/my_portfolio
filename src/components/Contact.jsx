@@ -44,10 +44,9 @@ const CONTACT_ITEMS = [
   {
     icon: IconGithub,
     label: 'GitHub',
-    value: 'YOUR_GITHUB_USERNAME',
-    href: 'https://github.com/YOUR_GITHUB_USERNAME',
+    value: 'pallavikochar',
+    href: 'https://github.com/pallavikochar',
     copyable: false,
-    placeholder: true,
   },
 ]
 
