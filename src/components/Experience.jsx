@@ -49,6 +49,33 @@ const EXPERIENCES = [
     ],
     tags: ['Python', 'NLP', 'Chatbot', 'Text Classification'],
   },
+  {
+    company: 'Reliance Jio',
+    role: 'Product Management Intern',
+    period: 'Nov 2020 – Jan 2021',
+    location: 'Mumbai, India',
+    type: 'Internship',
+    color: 'from-sky-500 to-cyan-600',
+    bullet_color: 'bg-sky-400',
+    bullets: [
+      'Customized features for the JioPhone Next in partnership with Google, targeting 300M+ users in India\'s mass market.',
+      'Recommended strategic product enhancements that contributed to an estimated 15% higher adoption in Tier-2 cities.',
+    ],
+    tags: ['Product Management', 'Google Partnership', 'Market Research'],
+  },
+  {
+    company: 'Microsoft',
+    role: 'Engage Mentorship Program Apprentice',
+    period: 'May 2020 – Jul 2020',
+    location: 'Mumbai, India',
+    type: 'Apprenticeship',
+    color: 'from-green-500 to-emerald-600',
+    bullet_color: 'bg-green-400',
+    bullets: [
+      'Developed a web application to visualize and analyze shortest-path algorithms, integrating A*, Dijkstra, Best-First, and Breadth-First search for efficient distance calculation.',
+    ],
+    tags: ['HTML', 'CSS', 'JavaScript', 'Algorithms', 'Data Structures'],
+  },
 ]
 
 function ExperienceCard({ exp, index, darkMode }) {
