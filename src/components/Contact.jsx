@@ -123,7 +123,7 @@ export default function Contact({ darkMode }) {
             transition={{ duration: 0.5 }}
           >
             <p className={`text-base leading-relaxed mb-8 ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-              I'm graduating in May 2026 and actively exploring roles in{' '}
+              I graduated in May 2026 and am actively exploring roles in{' '}
               <span className={`font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                 quantitative research
               </span>,{' '}
@@ -138,7 +138,7 @@ export default function Contact({ darkMode }) {
             </p>
 
             <div className="space-y-3 mb-10">
-              {['Open to full-time roles starting Summer 2026', 'US work authorized (OPT eligible)', 'Based in Champaign, IL. Open to NYC, Chicago, or remote'].map(item => (
+              {['Open to full-time roles', 'US work authorized (OPT eligible)', 'Open to NYC, Chicago, or remote'].map(item => (
                 <div key={item} className="flex items-center gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
                   <span className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>{item}</span>
@@ -175,7 +175,7 @@ export default function Contact({ darkMode }) {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
               </span>
               <span className={`text-sm ${darkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>
-                Available for Summer 2026 opportunities
+                Available for full-time opportunities
               </span>
             </div>
           </motion.div>

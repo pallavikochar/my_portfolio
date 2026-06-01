@@ -41,7 +41,7 @@ export default function About({ darkMode }) {
             <p className={`text-base leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
               Currently, I'm a <span className={`font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>Data Product Engineer Intern at FAlpha.ai</span>, building
               an explainability layer over prediction models using SHAP, LIME, and integrated
-              gradients. I'm graduating in May 2026 and actively exploring full-time roles in
+              gradients. I graduated in May 2026 and am actively exploring full-time roles in
               quant research, data engineering, and AI-driven fintech.
             </p>
 
