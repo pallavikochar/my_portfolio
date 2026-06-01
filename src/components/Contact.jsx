@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import SectionWrapper, { SectionHeader } from './SectionWrapper'
-import { Mail, Phone, ArrowRight, Copy, Check } from 'lucide-react'
+import { Mail, ArrowRight, Copy, Check } from 'lucide-react'
 
 function IconGithub({ size = 18 }) {
   return (
@@ -27,13 +27,7 @@ const CONTACT_ITEMS = [
     href: 'mailto:pallavikochar8@gmail.com',
     copyable: true,
   },
-  {
-    icon: Phone,
-    label: 'Phone',
-    value: '+1 (217) 418-2810',
-    href: 'tel:+12174182810',
-    copyable: true,
-  },
+
   {
     icon: IconLinkedin,
     label: 'LinkedIn',
