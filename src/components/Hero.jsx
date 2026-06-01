@@ -184,7 +184,7 @@ export default function Hero({ darkMode }) {
             transition={{ duration: 0.6, delay: 0.5 }}
             className={`text-sm sm:text-base mb-10 ${darkMode ? 'text-slate-500' : 'text-slate-500'}`}
           >
-            MS Finance · UIUC &nbsp;·&nbsp; B.Tech · IIT Bombay
+            MS · UIUC &nbsp;|&nbsp; B.Tech · IIT Bombay
           </motion.p>
 
           {/* CTAs */}

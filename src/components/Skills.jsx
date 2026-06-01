@@ -42,7 +42,7 @@ const SKILL_GROUPS = [
       { name: 'Time Series (ARIMA, GARCH)', level: 88 },
       { name: 'LSTM / RNN', level: 78 },
       { name: 'FinBERT / NLP', level: 75 },
-      { name: 'Explainable AI (SHAP, LIME)', level: 85 },
+      { name: 'Explainable AI (SHAP)', level: 85 },
       { name: 'Gradient Boosting (XGBoost)', level: 80 },
       { name: 'Scikit-learn / Pandas', level: 92 },
     ],
@@ -52,12 +52,12 @@ const SKILL_GROUPS = [
     icon: '🤖',
     color: 'from-orange-500 to-rose-600',
     skills: [
-      { name: 'Claude / Anthropic API', level: 88 },
+      { name: 'LLMs (GPT-4o, Claude, Gemini)', level: 90 },
+      { name: 'Anthropic API / Claude Code', level: 88 },
       { name: 'Multi-Agent Orchestration', level: 82 },
       { name: 'MCP (Model Context Protocol)', level: 75 },
       { name: 'GitHub Copilot', level: 85 },
       { name: 'LangChain / Agents', level: 75 },
-      { name: 'OpenAI API (GPT-4o)', level: 85 },
     ],
   },
 ]
@@ -99,9 +99,6 @@ function SkillCard({ group, index, darkMode }) {
             <div className="flex justify-between mb-1">
               <span className={`text-sm ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
                 {skill.name}
-              </span>
-              <span className={`text-xs font-mono ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                {skill.level}%
               </span>
             </div>
             <div className={`h-1 rounded-full overflow-hidden ${darkMode ? 'bg-navy-800' : 'bg-slate-100'}`}>

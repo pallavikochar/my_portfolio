@@ -30,7 +30,7 @@ export default function Footer({ darkMode }) {
           <div>
             <div className="font-serif text-lg font-semibold text-gradient">Pallavi Kochar</div>
             <p className={`text-xs mt-1 ${darkMode ? 'text-slate-600' : 'text-slate-400'}`}>
-              MS Finance · UIUC &nbsp;|&nbsp; B.Tech · IIT Bombay
+              New York &nbsp;|&nbsp; Chicago &nbsp;|&nbsp; Remote
             </p>
           </div>
 

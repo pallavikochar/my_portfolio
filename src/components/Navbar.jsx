@@ -58,9 +58,9 @@ export default function Navbar({ darkMode, toggleDark }) {
         <a
           href="#hero"
           onClick={e => { e.preventDefault(); handleNavClick('#hero') }}
-          className="flex items-center"
+          className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-500/25"
         >
-          <img src="/logo.png" alt="Pallavi Kochar" className="h-9 w-auto" />
+          <span className="font-serif text-base font-bold tracking-wide text-white leading-none">PK</span>
         </a>
 
         {/* Desktop links */}

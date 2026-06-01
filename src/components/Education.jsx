@@ -8,48 +8,50 @@ const EDUCATION = [
     school: 'University of Illinois Urbana-Champaign',
     short: 'UIUC',
     degree: 'Master of Science in Finance',
-    concentrations: ['Asset Management', 'Quantitative Finance', 'Data Analytics'],
+    concentrations: ['Quantitative Finance', 'Data Analytics'],
     period: 'Aug 2024 – May 2026',
     location: 'Champaign, IL',
     logo: '🔶',
+    logoImg: '/uiuc.png',
     color: 'from-orange-500 to-amber-600',
     courses: [
-      'Fixed Income Securities & Derivatives',
-      'Equity & Derivative Trading',
+      'Advanced Financial Derivatives',
+      'Quantamental Investment',
+      'Applied Portfolio Management',
+      'Big Data Analytics',
       'Machine Learning in Finance',
-      'Portfolio Management',
-      'Quantitative Methods',
-      'Financial Data Engineering',
-      'Alternative Investments',
-      'Risk Management',
+      'Financial Risk Management',
     ],
     highlights: [
-      'Gies College of Business, consistently ranked top-5 Finance programs',
-      'Quantitative Finance concentration: derivative pricing, stochastic calculus, time series',
-      'Asset Management concentration: portfolio theory, factor models, institutional investing',
+      'Derivative pricing, stochastic calculus, time series modeling',
+      'Portfolio theory, factor models, and institutional investing',
+      'Course Grader, FIN501-Economics',
+      'MS in Finance Program Ambassador',
     ],
   },
   {
     school: 'Indian Institute of Technology Bombay',
     short: 'IIT Bombay',
     degree: 'Bachelor of Technology in Chemical Engineering',
-    concentrations: [],
+    concentrations: ['Minor in Industrial Engineering & Operations Research'],
     period: 'Jul 2018 – May 2022',
     location: 'Mumbai, India',
     logo: '🔵',
+    logoImg: '/iitb.png',
     color: 'from-blue-600 to-indigo-700',
     courses: [
       'Process Systems Engineering',
       'Numerical Methods & Computation',
       'Probability & Statistics',
       'Linear Algebra & Optimization',
-      'Data Analysis for Engineers',
-      'Fluid Mechanics',
+      'Operations Research',
+      'Economics',
+'Advanced Data Analysis',
     ],
     highlights: [
-      'IIT Bombay, India\'s #1 engineering institution with an acceptance rate under 1%',
-      'Strong quantitative foundation: optimization, numerical methods, stochastic modeling',
-      'Research-oriented curriculum emphasizing analytical rigor and first-principles reasoning',
+      'Strong quantitative foundation in optimization and numerical methods',
+      'Research-oriented curriculum emphasizing analytical rigor',
+      'Senior Convener, InSync Dance Club',
     ],
   },
 ]
@@ -74,8 +76,10 @@ function EducationCard({ edu, index, darkMode }) {
       <div className="p-8">
         {/* Header */}
         <div className="flex items-start gap-5 mb-6">
-          <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl bg-gradient-to-br ${edu.color} flex-shrink-0`}>
-            {edu.logo}
+          <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 overflow-hidden ${edu.logoImg ? 'bg-white' : `bg-gradient-to-br ${edu.color}`}`}>
+            {edu.logoImg
+              ? <img src={edu.logoImg} alt={edu.short} className="w-full h-full object-contain p-1" />
+              : edu.logo}
           </div>
           <div className="flex-1">
             <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>

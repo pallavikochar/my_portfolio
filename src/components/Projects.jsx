@@ -41,7 +41,7 @@ const PROJECTS = [
       { label: 'Paths', value: '50K+' },
       { label: 'Barrier', value: '50%' },
     ],
-    github: 'https://github.com/pallavikochar/structured-product-valuation',
+    github: null,
     demo: null,
   },
   {
@@ -57,7 +57,7 @@ const PROJECTS = [
       { label: 'Conf.', value: '95%' },
       { label: 'Asset', value: 'SPY' },
     ],
-    github: 'https://github.com/pallavikochar/garch-var-modeling',
+    github: null,
     demo: null,
   },
   {
@@ -73,7 +73,7 @@ const PROJECTS = [
       { label: 'Type', value: 'NLP + Stats' },
       { label: 'Focus', value: 'Behavioral' },
     ],
-    github: 'https://github.com/pallavikochar/credit-card-ad-analysis',
+    github: null,
     demo: null,
   },
 ]
@@ -154,7 +154,9 @@ function ProjectCard({ project, index, darkMode }) {
         </div>
 
         {/* Links */}
+        {(project.github || project.demo) && (
         <div className="flex items-center gap-3 mt-auto pt-2 border-t border-current/5">
+          {project.github && (
           <a
             href={project.github}
             target="_blank"
@@ -166,6 +168,7 @@ function ProjectCard({ project, index, darkMode }) {
             <IconGithub size={13} />
             GitHub
           </a>
+          )}
           {project.demo && (
             <a
               href={project.demo}
@@ -180,6 +183,7 @@ function ProjectCard({ project, index, darkMode }) {
             </a>
           )}
         </div>
+        )}
       </div>
     </motion.div>
   )

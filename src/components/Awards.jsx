@@ -5,6 +5,19 @@ import { Trophy, Zap, Star } from 'lucide-react'
 
 const AWARDS = [
   {
+    icon: Star,
+    color: 'from-emerald-400 to-teal-500',
+    badgeColor: {
+      dark: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+      light: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    },
+    title: 'Top 0.1% in JEE Examination',
+    org: 'IIT Bombay',
+    date: 'Jul 2018',
+    description:
+      'Ranked in the top 0.1% of 1.1 million candidates in one of the world\'s most competitive engineering entrance exams, including the advanced level (top 1%), securing admission to IIT Bombay, India\'s top engineering institute.',
+  },
+  {
     icon: Zap,
     color: 'from-amber-400 to-orange-500',
     badgeColor: {
@@ -29,19 +42,6 @@ const AWARDS = [
     date: 'Aug 2023',
     description:
       'Recognized with the FY23-24 Kotak Securities IT Champion Award for exemplary contribution and technical leadership across critical infrastructure and automation projects.',
-  },
-  {
-    icon: Star,
-    color: 'from-emerald-400 to-teal-500',
-    badgeColor: {
-      dark: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-      light: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    },
-    title: 'Top 0.1% in JEE Examination',
-    org: 'IIT Bombay',
-    date: 'Jul 2018',
-    description:
-      'Ranked in the top 0.1% of 1.1 million candidates in one of the world\'s most competitive engineering entrance exams, including the advanced level (top 1%), securing admission to IIT Bombay, India\'s top engineering institute.',
   },
 ]
 

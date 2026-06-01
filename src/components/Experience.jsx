@@ -1,7 +1,7 @@
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import SectionWrapper, { SectionHeader } from './SectionWrapper'
-import { MapPin, Calendar, ExternalLink } from 'lucide-react'
+import { MapPin, Calendar, ChevronDown } from 'lucide-react'
 
 const EXPERIENCES = [
   {
@@ -14,10 +14,10 @@ const EXPERIENCES = [
     bullet_color: 'bg-blue-400',
     bullets: [
       'Built an explainable AI layer over prediction models, enabling transparent, auditable investment signals for portfolio managers.',
-      'Benchmarked SHAP vs. LIME vs. Integrated Gradients for production deployment, evaluating fidelity, computational cost, and interpretability trade-offs.',
+      'Benchmarked SHAP vs. Integrated Gradients for production deployment, evaluating fidelity, computational cost, and interpretability trade-offs.',
       'Designed evaluation framework to validate explainability outputs against ground-truth model behavior at scale.',
     ],
-    tags: ['Python', 'SHAP', 'LIME', 'Explainable AI', 'ML'],
+    tags: ['Python', 'SHAP', 'Explainable AI', 'ML'],
   },
   {
     company: 'Kotak Securities',
@@ -36,18 +36,32 @@ const EXPERIENCES = [
     tags: ['C#', 'SQL Server', 'SSIS', 'AWS', 'Salesforce', 'Microservices'],
   },
   {
+    company: 'Metvy',
+    role: 'Entrepreneurship Trainee',
+    period: 'Jun 2021 – Jul 2021',
+    location: 'Mumbai, India',
+    type: 'Trainee',
+    color: 'from-rose-500 to-pink-600',
+    bullet_color: 'bg-rose-400',
+    bullets: [
+      'Attended 15+ expert sessions across 8 aspects of entrepreneurship to understand the venture creation process.',
+      'Developed a startup concept, conducted cost analysis, devised revenue strategies, and pitched to a panel of 10+ judges.',
+    ],
+    tags: ['Entrepreneurship', 'Business Strategy', 'Pitching', 'Cost Analysis'],
+  },
+  {
     company: 'FlexiEle',
     role: 'AI / ML Intern',
-    period: '2021',
-    location: 'Remote',
+    period: 'May 2021 – Jul 2021',
+    location: 'Gurgaon, India',
     type: 'Internship',
     color: 'from-purple-500 to-violet-600',
     bullet_color: 'bg-purple-400',
     bullets: [
-      'Developed an NLP-powered screening chatbot that automated candidate pre-qualification, cutting recruiter workload by 60%.',
-      'Applied text classification and intent detection to rank and shortlist applicants against job description criteria.',
+      'Designed an AI chatbot using NLP techniques to conduct initial screenings, reducing manual recruiter workload by 60%.',
+      'Trained ML algorithms to assess responses, improving prediction accuracy by 25% compared to rule-based methods.',
     ],
-    tags: ['Python', 'NLP', 'Chatbot', 'Text Classification'],
+    tags: ['Python', 'NLP', 'Chatbot', 'ML'],
   },
   {
     company: 'Reliance Jio',
@@ -81,6 +95,7 @@ const EXPERIENCES = [
 function ExperienceCard({ exp, index, darkMode }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
+  const [open, setOpen] = useState(false)
 
   return (
     <motion.div
@@ -97,14 +112,17 @@ function ExperienceCard({ exp, index, darkMode }) {
       <div className={`absolute left-0 top-2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-accent bg-gradient-to-br ${exp.color}`} />
 
       <div
-        className={`rounded-2xl border p-6 card-hover ${
+        className={`rounded-2xl border overflow-hidden ${
           darkMode
             ? 'border-blue-500/10 bg-navy-900'
             : 'border-slate-200 bg-white shadow-sm'
         }`}
       >
-        {/* Header */}
-        <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
+        {/* Clickable Header */}
+        <button
+          onClick={() => setOpen(o => !o)}
+          className="w-full p-6 flex flex-wrap items-start justify-between gap-4 text-left hover:opacity-80 transition-opacity"
+        >
           <div>
             <div className="flex items-center gap-2 mb-1">
               <h3 className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
@@ -118,45 +136,65 @@ function ExperienceCard({ exp, index, darkMode }) {
                 {exp.type}
               </span>
             </div>
-            <div className={`text-base font-semibold text-gradient`}>{exp.company}</div>
+            <div className="text-base font-semibold text-gradient">{exp.company}</div>
           </div>
-          <div className="text-right">
-            <div className={`flex items-center gap-1.5 text-sm ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-              <Calendar size={13} />
-              {exp.period}
+          <div className="flex items-center gap-4">
+            <div className="text-right">
+              <div className={`flex items-center gap-1.5 text-sm ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                <Calendar size={13} />
+                {exp.period}
+              </div>
+              <div className={`flex items-center gap-1.5 text-xs mt-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
+                <MapPin size={11} />
+                {exp.location}
+              </div>
             </div>
-            <div className={`flex items-center gap-1.5 text-xs mt-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-              <MapPin size={11} />
-              {exp.location}
-            </div>
+            <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+              <ChevronDown size={16} className={darkMode ? 'text-slate-500' : 'text-slate-400'} />
+            </motion.div>
           </div>
-        </div>
+        </button>
 
-        {/* Bullets */}
-        <ul className="space-y-2 mb-4">
-          {exp.bullets.map((b, i) => (
-            <li key={i} className="flex items-start gap-2.5">
-              <span className={`mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0 ${exp.bullet_color}`} />
-              <span className={`text-sm leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{b}</span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5">
-          {exp.tags.map(t => (
-            <span
-              key={t}
-              className={`px-2.5 py-1 text-xs font-mono rounded-md ${
-                darkMode
-                  ? 'bg-navy-800 text-slate-400 border border-slate-700'
-                  : 'bg-slate-100 text-slate-600 border border-slate-200'
-              }`}
+        {/* Collapsible body */}
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25, ease: 'easeInOut' }}
+              className="overflow-hidden"
             >
-              {t}
-            </span>
-          ))}
-        </div>
+              <div className={`px-6 pb-6 border-t ${darkMode ? 'border-blue-500/10' : 'border-slate-100'}`}>
+                {/* Bullets */}
+                <ul className="space-y-2 mt-4 mb-4">
+                  {exp.bullets.map((b, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <span className={`mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0 ${exp.bullet_color}`} />
+                      <span className={`text-sm leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5">
+                  {exp.tags.map(t => (
+                    <span
+                      key={t}
+                      className={`px-2.5 py-1 text-xs font-mono rounded-md ${
+                        darkMode
+                          ? 'bg-navy-800 text-slate-400 border border-slate-700'
+                          : 'bg-slate-100 text-slate-600 border border-slate-200'
+                      }`}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   )

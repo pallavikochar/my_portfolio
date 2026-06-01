@@ -4,8 +4,8 @@ import SectionWrapper, { SectionHeader } from './SectionWrapper'
 
 const STATS = [
   { value: '3+', label: 'Years Engineering' },
-  { value: 'IIT', label: 'Bombay Alumna' },
-  { value: 'UIUC', label: 'MS Finance' },
+  { value: '10K+', label: 'Monthly Txns Automated' },
+  { value: '83%', label: 'Trading Hit Rate' },
   { value: 'AI/ML', label: 'Focus Area' },
 ]
 
@@ -26,7 +26,7 @@ export default function About({ darkMode }) {
           {/* Text */}
           <div className="space-y-6">
             <p className={`text-base leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-              I'm a quantitative finance professional with a rare background spanning three disciplines:
+              My background spans three disciplines:
               rigorous engineering from <span className={`font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>IIT Bombay</span> (B.Tech, Chemical Engineering),
               deep financial theory from <span className={`font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>UIUC's Gies College of Business</span> (MS Finance,
               concentrations in Asset Management and Quantitative Finance), and three years of
@@ -39,10 +39,8 @@ export default function About({ darkMode }) {
               multi-agent trading systems to structured product Monte Carlo engines.
             </p>
             <p className={`text-base leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-              Currently, I'm a <span className={`font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>Data Product Engineer Intern at FAlpha.ai</span>, building
-              an explainability layer over prediction models using SHAP, LIME, and integrated
-              gradients. I graduated in May 2026 and am actively exploring full-time roles in
-              quant research, data engineering, and AI-driven fintech.
+              Most recently, I was a <span className={`font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>Data Product Engineer Intern at FAlpha.ai</span>, where I built
+              an explainability layer over prediction models using SHAP and integrated gradients.
             </p>
 
             {/* Key interests */}
