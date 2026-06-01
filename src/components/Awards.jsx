@@ -37,7 +37,7 @@ const AWARDS = [
       dark: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
       light: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     },
-    title: 'Top 0.1% in JEE',
+    title: 'Top 0.1% in JEE (Joint Entrance Examination)',
     org: 'IIT Bombay',
     date: 'Jul 2018',
     description:
