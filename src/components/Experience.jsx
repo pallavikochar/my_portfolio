@@ -28,7 +28,7 @@ const EXPERIENCES = [
     color: 'from-emerald-500 to-teal-600',
     bullet_color: 'bg-emerald-400',
     bullets: [
-      'Architected and delivered an automated SIP auto-debit system processing 10,000+ monthly transactions at 99.9% accuracy using C#, SSIS, and SQL Server — eliminating manual reconciliation entirely.',
+      'Architected and delivered an automated SIP auto-debit system processing 10,000+ monthly transactions at 99.9% accuracy using C#, SSIS, and SQL Server. Eliminated manual reconciliation entirely.',
       'Built AWS data pipelines integrating Salesforce CRM data, improving data engineering efficiency by 30% and enabling real-time client analytics.',
       'Saved 200 IT hours/month by automating reporting workflows and operational processes across the trading platform.',
       'Optimized portfolio-tracker microservices for latency and throughput, saving 50+ developer-hours per week through architectural refactoring and query optimization.',

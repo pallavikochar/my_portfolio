@@ -33,7 +33,7 @@ export default function About({ darkMode }) {
               production backend engineering at <span className={`font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>Kotak Securities</span>.
             </p>
             <p className={`text-base leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-              That combination—quant rigor, systems thinking, and hands-on ML—lets me work
+              That combination of quant rigor, systems thinking, and hands-on ML lets me work
               fluidly across derivative pricing, data pipeline architecture, and explainable AI.
               I'm drawn to problems where market microstructure meets machine learning: from
               multi-agent trading systems to structured product Monte Carlo engines.
@@ -69,24 +69,15 @@ export default function About({ darkMode }) {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className={`relative rounded-2xl overflow-hidden aspect-[4/3] border flex items-center justify-center ${
-                darkMode ? 'border-blue-500/15 bg-navy-900' : 'border-blue-200 bg-slate-100'
+              className={`relative rounded-2xl overflow-hidden aspect-[4/3] border ${
+                darkMode ? 'border-blue-500/15' : 'border-blue-200'
               }`}
             >
-              {/* Replace this div with an <img> tag when you have a photo */}
-              <div className="text-center p-8">
-                <div className={`w-24 h-24 rounded-full mx-auto mb-4 border-2 flex items-center justify-center ${
-                  darkMode ? 'border-accent/40 bg-navy-800' : 'border-accent/40 bg-white'
-                }`}>
-                  <span className="font-serif text-3xl font-bold text-gradient">PK</span>
-                </div>
-                <p className={`text-sm ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                  📸 Add profile photo here
-                </p>
-                <p className={`text-xs mt-1 font-mono ${darkMode ? 'text-slate-600' : 'text-slate-400'}`}>
-                  Replace with &lt;img src="your-photo.jpg" /&gt;
-                </p>
-              </div>
+              <img
+                src="/photo.JPG"
+                alt="Pallavi Kochar"
+                className="w-full h-full object-cover object-top"
+              />
             </motion.div>
 
             {/* Stats */}

@@ -139,7 +139,7 @@ export default function Contact({ darkMode }) {
             </p>
 
             <div className="space-y-3 mb-10">
-              {['Open to full-time roles starting Summer 2026', 'US work authorized (OPT eligible)', 'Based in Champaign, IL — open to NYC, Chicago, remote'].map(item => (
+              {['Open to full-time roles starting Summer 2026', 'US work authorized (OPT eligible)', 'Based in Champaign, IL. Open to NYC, Chicago, or remote'].map(item => (
                 <div key={item} className="flex items-center gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
                   <span className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>{item}</span>

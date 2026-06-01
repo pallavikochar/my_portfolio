@@ -201,7 +201,7 @@ export default function Hero({ darkMode }) {
               View Work
             </button>
             <a
-              href="/Pallavi_Kochar Resume.pdf"
+              href="/Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className={`px-6 py-3 text-sm font-semibold rounded-lg border transition-all duration-200 ${

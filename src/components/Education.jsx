@@ -24,7 +24,7 @@ const EDUCATION = [
       'Risk Management',
     ],
     highlights: [
-      'Gies College of Business — consistently ranked top-5 Finance programs',
+      'Gies College of Business, consistently ranked top-5 Finance programs',
       'Quantitative Finance concentration: derivative pricing, stochastic calculus, time series',
       'Asset Management concentration: portfolio theory, factor models, institutional investing',
     ],
@@ -32,7 +32,7 @@ const EDUCATION = [
   {
     school: 'Indian Institute of Technology Bombay',
     short: 'IIT Bombay',
-    degree: 'Bachelor of Technology — Chemical Engineering',
+    degree: 'Bachelor of Technology in Chemical Engineering',
     concentrations: [],
     period: 'Jul 2018 – May 2022',
     location: 'Mumbai, India',
@@ -47,7 +47,7 @@ const EDUCATION = [
       'Fluid Mechanics',
     ],
     highlights: [
-      'IIT Bombay — India\'s #1 engineering institution; acceptance rate <1%',
+      'IIT Bombay, India\'s #1 engineering institution with an acceptance rate under 1%',
       'Strong quantitative foundation: optimization, numerical methods, stochastic modeling',
       'Research-oriented curriculum emphasizing analytical rigor and first-principles reasoning',
     ],

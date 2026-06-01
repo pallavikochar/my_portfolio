@@ -47,7 +47,7 @@ const PROJECTS = [
   {
     title: 'GARCH Volatility & VaR Modeling',
     description:
-      'Implemented GARCH(1,1) on SPY returns using custom Maximum Likelihood Estimation in R — no black-box packages. Forecasted conditional volatility, then computed 1-day Value at Risk and Expected Shortfall at the 95% confidence level. Results validated against industry benchmarks.',
+      'Implemented GARCH(1,1) on SPY returns using custom Maximum Likelihood Estimation in R without black-box packages. Forecasted conditional volatility, then computed 1-day Value at Risk and Expected Shortfall at the 95% confidence level. Results validated against industry benchmarks.',
     icon: Activity,
     color: 'from-violet-500 to-purple-600',
     accent: 'violet',
@@ -197,7 +197,7 @@ export default function Projects({ darkMode }) {
         <SectionHeader
           eyebrow="Projects"
           title="Selected Work"
-          subtitle="Quantitative research, derivative pricing, and AI-driven systems — with real numbers attached."
+          subtitle="Quantitative research, derivative pricing, and AI-driven systems. All results are real."
           darkMode={darkMode}
         />
 
