@@ -165,9 +165,6 @@ function ProjectCard({ project, index, darkMode }) {
           >
             <IconGithub size={13} />
             GitHub
-            <span className={`ml-1 text-xs font-mono px-1 py-0.5 rounded ${
-              darkMode ? 'bg-navy-800 text-slate-600' : 'bg-slate-100 text-slate-400'
-            }`}>placeholder</span>
           </a>
           {project.demo && (
             <a
