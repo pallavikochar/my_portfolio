@@ -25,7 +25,7 @@ const PROJECTS = [
       { label: 'Return', value: '+13.5%' },
       { label: 'Sharpe', value: '0.35' },
     ],
-    github: 'https://github.com/YOUR_GITHUB_USERNAME/multi-agent-trading',
+    github: 'https://github.com/pallavikochar/oil-gas-multi-agent-trading-system',
     demo: null,
   },
   {
