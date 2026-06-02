@@ -139,13 +139,16 @@ export default function Contact({ darkMode }) {
     if (Object.keys(e2).length) { setErrors(e2); return }
     setErrors({})
     setStatus('loading')
+    const body = new FormData()
+    body.append('entry.2005620554', form.name)
+    body.append('entry.1045781291', form.email)
+    body.append('entry.839337160', form.company)
+    body.append('entry.53023953', form.message)
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      if (!res.ok) throw new Error()
+      await fetch(
+        'https://docs.google.com/forms/d/e/1FAIpQLScBMF-1qGJge0JKK8WUCpER2VS6gJIm8jDz0tFbD4SWLk0cDw/formResponse',
+        { method: 'POST', mode: 'no-cors', body }
+      )
       setStatus('success')
       setForm({ name: '', email: '', company: '', message: '' })
     } catch {
