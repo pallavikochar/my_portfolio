@@ -1,12 +1,23 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import SectionWrapper, { SectionHeader } from './SectionWrapper'
-
-const STATS = [
-  { value: '3+', label: 'Years Engineering' },
-  { value: '10K+', label: 'Monthly Txns Automated' },
-  { value: '83%', label: 'Trading Hit Rate' },
-  { value: 'AI/ML', label: 'Focus Area' },
+const HONORS = [
+  {
+    title: '3+ Years',
+    meta: 'Work Experience',
+  },
+  {
+    title: 'Top 0.1% in JEE Examination',
+    meta: 'IIT Bombay · Jul 2018',
+  },
+  {
+    title: 'Fast-tracked Promotion',
+    meta: 'Kotak Securities · 3 designations in 2 years',
+  },
+  {
+    title: 'IT Champion Award',
+    meta: 'Kotak Securities · FY23-24',
+  },
 ]
 
 export default function About({ darkMode }) {
@@ -60,9 +71,9 @@ export default function About({ darkMode }) {
             </div>
           </div>
 
-          {/* Right column: photo placeholder + stats */}
-          <div ref={imgRef} className="space-y-8">
-            {/* Profile photo placeholder */}
+          {/* Right column: photo + honors */}
+          <div ref={imgRef} className="space-y-6">
+            {/* Profile photo */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -78,22 +89,31 @@ export default function About({ darkMode }) {
               />
             </motion.div>
 
-            {/* Stats */}
+            {/* Honors */}
             <div className="grid grid-cols-2 gap-4">
-              {STATS.map(({ value, label }, i) => (
+              {HONORS.map(({ title, meta }, i) => (
                 <motion.div
-                  key={label}
+                  key={title}
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                  className={`p-5 rounded-xl border ${
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  className={`relative p-4 rounded-xl border overflow-hidden cursor-default group transition-shadow duration-300 ${
                     darkMode
-                      ? 'border-blue-500/10 bg-navy-900'
-                      : 'border-slate-200 bg-slate-50'
+                      ? 'border-blue-500/10 bg-navy-900 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10'
+                      : 'border-slate-200 bg-white hover:border-blue-300 hover:shadow-md'
                   }`}
                 >
-                  <div className="font-serif text-2xl font-bold text-gradient">{value}</div>
-                  <div className={`text-xs mt-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>{label}</div>
+                  {/* Subtle gradient glow on hover */}
+                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                    darkMode
+                      ? 'bg-gradient-to-br from-blue-500/5 to-transparent'
+                      : 'bg-gradient-to-br from-blue-50 to-transparent'
+                  }`} />
+                  <div className="relative">
+                    <p className={`text-sm font-bold leading-snug text-gradient`}>{title}</p>
+                    <p className={`text-xs mt-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>{meta}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
