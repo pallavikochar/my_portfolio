@@ -133,27 +133,48 @@ export default function Contact({ darkMode }) {
     return e
   }
 
-  const handleSubmit = async (e) => {
+  const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScBMF-1qGJge0JKK8WUCpER2VS6gJIm8jDz0tFbD4SWLk0cDw/formResponse'
+
+  const handleSubmit = (e) => {
     e.preventDefault()
     const e2 = validate()
     if (Object.keys(e2).length) { setErrors(e2); return }
     setErrors({})
     setStatus('loading')
-    const body = new FormData()
-    body.append('entry.2005620554', form.name)
-    body.append('entry.1045781291', form.email)
-    body.append('entry.839337160', form.company)
-    body.append('entry.53023953', form.message)
-    try {
-      await fetch(
-        'https://docs.google.com/forms/d/e/1FAIpQLScBMF-1qGJge0JKK8WUCpER2VS6gJIm8jDz0tFbD4SWLk0cDw/formResponse',
-        { method: 'POST', mode: 'no-cors', body }
-      )
+
+    const iframe = document.createElement('iframe')
+    iframe.name = 'gform_iframe'
+    iframe.style.display = 'none'
+    document.body.appendChild(iframe)
+
+    const hiddenForm = document.createElement('form')
+    hiddenForm.method = 'POST'
+    hiddenForm.action = FORM_URL
+    hiddenForm.target = 'gform_iframe'
+
+    const fields = {
+      'entry.2005620554': form.name,
+      'entry.1045781291': form.email,
+      'entry.839337160': form.company,
+      'entry.53023953': form.message,
+    }
+    Object.entries(fields).forEach(([name, value]) => {
+      const input = document.createElement('input')
+      input.type = 'hidden'
+      input.name = name
+      input.value = value
+      hiddenForm.appendChild(input)
+    })
+
+    document.body.appendChild(hiddenForm)
+    hiddenForm.submit()
+    document.body.removeChild(hiddenForm)
+
+    setTimeout(() => {
       setStatus('success')
       setForm({ name: '', email: '', company: '', message: '' })
-    } catch {
-      setStatus('error')
-    }
+      document.body.removeChild(iframe)
+    }, 1000)
   }
 
   return (
