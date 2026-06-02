@@ -12,7 +12,7 @@ const EDUCATION = [
     period: 'Aug 2024 – May 2026',
     location: 'Champaign, IL',
     logo: '🔶',
-    logoImg: '/uiuc.png',
+    logoImg: `${import.meta.env.BASE_URL}uiuc.png`,
     color: 'from-orange-500 to-amber-600',
     courses: [
       'Advanced Financial Derivatives',
@@ -37,7 +37,7 @@ const EDUCATION = [
     period: 'Jul 2018 – May 2022',
     location: 'Mumbai, India',
     logo: '🔵',
-    logoImg: '/iitb.png',
+    logoImg: `${import.meta.env.BASE_URL}iitb.png`,
     color: 'from-blue-600 to-indigo-700',
     courses: [
       'Process Systems Engineering',

@@ -72,7 +72,7 @@ export default function About({ darkMode }) {
               }`}
             >
               <img
-                src="/photo.JPG"
+                src={`${import.meta.env.BASE_URL}photo.JPG`}
                 alt="Pallavi Kochar"
                 className="w-full h-full object-cover object-top"
               />
