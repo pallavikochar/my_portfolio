@@ -1,78 +1,72 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { Code2, TrendingUp, Brain, Bot } from 'lucide-react'
 import SectionWrapper, { SectionHeader } from './SectionWrapper'
 
 const SKILL_GROUPS = [
   {
     category: 'Technical',
-    icon: '⚙️',
+    icon: Code2,
     color: 'from-blue-500 to-indigo-600',
+    tagColor: {
+      dark: 'bg-blue-500/10 text-blue-300 border-blue-500/20',
+      light: 'bg-blue-50 text-blue-700 border-blue-200',
+    },
     skills: [
-      { name: 'Python', level: 95 },
-      { name: 'SQL / SQL Server', level: 90 },
-      { name: 'R', level: 82 },
-      { name: 'C# / .NET', level: 78 },
-      { name: 'AWS (S3, Lambda, Glue)', level: 75 },
-      { name: 'Azure', level: 68 },
-      { name: 'ETL / SSIS', level: 80 },
-      { name: 'CI/CD (GitHub Actions)', level: 70 },
-      { name: 'Bloomberg Terminal', level: 72 },
+      'Python', 'SQL', 'R', 'C# / .NET',
+      'AWS (S3, Lambda, EC2, Glue, RDS)', 'Azure', 'ETL / SSIS',
+      'CI/CD Pipelines', 'GitHub', 'Bloomberg Terminal',
     ],
   },
   {
     category: 'Finance & Quant',
-    icon: '📈',
+    icon: TrendingUp,
     color: 'from-emerald-500 to-teal-600',
+    tagColor: {
+      dark: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
+      light: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    },
     skills: [
-      { name: 'Derivative Pricing', level: 88 },
-      { name: 'Monte Carlo Methods', level: 90 },
-      { name: 'Risk Management / VaR', level: 85 },
-      { name: 'DCF / Equity Valuation', level: 82 },
-      { name: 'Fixed Income / Duration', level: 78 },
-      { name: 'Portfolio Construction', level: 80 },
-      { name: 'GARCH / Volatility Modeling', level: 85 },
-      { name: 'Backtesting Frameworks', level: 80 },
+      'Derivative Pricing', 'Monte Carlo Methods', 'Risk Management / VaR',
+      'Portfolio Management',
+      'GARCH / Volatility Modeling', 'Backtesting Frameworks',
     ],
   },
   {
     category: 'Machine Learning',
-    icon: '🧠',
+    icon: Brain,
     color: 'from-violet-500 to-purple-600',
+    tagColor: {
+      dark: 'bg-violet-500/10 text-violet-300 border-violet-500/20',
+      light: 'bg-violet-50 text-violet-700 border-violet-200',
+    },
     skills: [
-      { name: 'Time Series (ARIMA, GARCH)', level: 88 },
-      { name: 'LSTM / RNN', level: 78 },
-      { name: 'FinBERT / NLP', level: 75 },
-      { name: 'Explainable AI (SHAP)', level: 85 },
-      { name: 'Gradient Boosting (XGBoost)', level: 80 },
-      { name: 'Scikit-learn / Pandas', level: 92 },
+      'Time Series (ARIMA, GARCH)', 'FinBERT / NLP',
+      'Explainable AI (SHAP)', 'Gradient Boosting (XGBoost)',
+      'Scikit-learn / Pandas', 'LSTM / RNN',
     ],
   },
   {
     category: 'AI Tools & Systems',
-    icon: '🤖',
+    icon: Bot,
     color: 'from-orange-500 to-rose-600',
+    tagColor: {
+      dark: 'bg-orange-500/10 text-orange-300 border-orange-500/20',
+      light: 'bg-orange-50 text-orange-700 border-orange-200',
+    },
     skills: [
-      { name: 'LLMs (GPT-4o, Claude, Gemini)', level: 90 },
-      { name: 'Anthropic API / Claude Code', level: 88 },
-      { name: 'Multi-Agent Orchestration', level: 82 },
-      { name: 'MCP (Model Context Protocol)', level: 75 },
-      { name: 'GitHub Copilot', level: 85 },
-      { name: 'LangChain / Agents', level: 75 },
+      'LLM, LSM, LWM', 'Anthropic API / Claude Code',
+      'Multi-Agent Orchestration', 'MCP (Model Context Protocol)',
+      'GitHub Copilot', 'LangChain / Agents',
     ],
   },
 ]
 
-const BAR_COLORS = {
-  'Finance & Quant': 'bg-gradient-to-r from-emerald-500 to-teal-500',
-  'Technical': 'bg-gradient-to-r from-blue-500 to-indigo-500',
-  'Machine Learning': 'bg-gradient-to-r from-violet-500 to-purple-500',
-  'AI Tools & Systems': 'bg-gradient-to-r from-orange-500 to-rose-500',
-}
-
 function SkillCard({ group, index, darkMode }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
-  const barColor = BAR_COLORS[group.category]
+  const Icon = group.icon
+  const tag = group.tagColor[darkMode ? 'dark' : 'light']
 
   return (
     <motion.div
@@ -84,8 +78,12 @@ function SkillCard({ group, index, darkMode }) {
         darkMode ? 'border-blue-500/10 bg-navy-900' : 'border-slate-200 bg-white shadow-sm'
       }`}
     >
-      <div className="flex items-center gap-3 mb-6">
-        <span className="text-2xl">{group.icon}</span>
+      <div className="flex items-center gap-3 mb-4">
+        <div className={`w-8 h-8 rounded-lg flex items-center justify-center border ${
+          darkMode ? 'border-slate-600 bg-transparent' : 'border-slate-300 bg-transparent'
+        }`}>
+          <Icon size={15} className={darkMode ? 'text-white' : 'text-slate-600'} />
+        </div>
         <h3 className={`text-sm font-semibold tracking-wide uppercase ${
           darkMode ? 'text-slate-300' : 'text-slate-700'
         }`}>
@@ -93,23 +91,17 @@ function SkillCard({ group, index, darkMode }) {
         </h3>
       </div>
 
-      <div className="space-y-3.5">
+      <div className="flex flex-wrap gap-2">
         {group.skills.map((skill, i) => (
-          <div key={skill.name}>
-            <div className="flex justify-between mb-1">
-              <span className={`text-sm ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-                {skill.name}
-              </span>
-            </div>
-            <div className={`h-1 rounded-full overflow-hidden ${darkMode ? 'bg-navy-800' : 'bg-slate-100'}`}>
-              <motion.div
-                className={`h-full rounded-full ${barColor}`}
-                initial={{ width: 0 }}
-                animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 + i * 0.05, ease: 'easeOut' }}
-              />
-            </div>
-          </div>
+          <motion.span
+            key={skill}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.3, delay: 0.15 + i * 0.04 }}
+            className={`px-2.5 py-1 text-xs rounded-lg border font-medium ${tag}`}
+          >
+            {skill}
+          </motion.span>
         ))}
       </div>
     </motion.div>
@@ -127,7 +119,7 @@ export default function Skills({ darkMode }) {
           darkMode={darkMode}
         />
 
-        <div className="grid sm:grid-cols-2 xl:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 gap-6">
           {SKILL_GROUPS.map((group, i) => (
             <SkillCard key={group.category} group={group} index={i} darkMode={darkMode} />
           ))}

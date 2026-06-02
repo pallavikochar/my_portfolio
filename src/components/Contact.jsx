@@ -279,7 +279,7 @@ export default function Contact({ darkMode }) {
                       </div>
                       <textarea
                         rows={4}
-                        placeholder="Tell me about the role or opportunity..."
+                        placeholder="Feel free to say hi, share an idea, or explore something together..."
                         value={form.message}
                         onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
                         className={`w-full pl-9 pr-4 py-2.5 text-sm rounded-lg border outline-none transition-colors resize-none ${

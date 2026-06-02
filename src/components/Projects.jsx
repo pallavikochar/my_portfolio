@@ -213,10 +213,6 @@ export default function Projects({ darkMode }) {
           transition={{ delay: 0.4 }}
           className={`mt-8 text-sm font-mono text-center ${darkMode ? 'text-slate-600' : 'text-slate-400'}`}
         >
-          💡 Replace the GitHub placeholder links with your actual repo URLs in{' '}
-          <code className={`px-1.5 py-0.5 rounded text-xs ${darkMode ? 'bg-navy-900' : 'bg-slate-200'}`}>
-            src/components/Projects.jsx
-          </code>
         </motion.p>
       </div>
     </SectionWrapper>
