@@ -115,8 +115,7 @@ function ProjectCard({ project, index, darkMode }) {
           : 'border-slate-200 bg-white shadow-sm'
       }`}
     >
-      {/* Card top accent bar */}
-      <div className={`h-1 w-full bg-gradient-to-r ${project.color}`} />
+
 
       <div className="p-6 flex flex-col flex-1">
         {/* Icon + title */}

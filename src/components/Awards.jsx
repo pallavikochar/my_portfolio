@@ -15,7 +15,7 @@ const AWARDS = [
     org: 'IIT Bombay',
     date: 'Jul 2018',
     description:
-      'Ranked in the top 0.1% of 1.1 million candidates in one of the world\'s most competitive engineering entrance exams, including the advanced level (top 1%), securing admission to IIT Bombay, India\'s top engineering institute.',
+      'Top 0.1% among 1.1M candidates in India\'s most competitive engineering exam. Secured admission to IIT Bombay.',
   },
   {
     icon: Zap,
@@ -28,7 +28,7 @@ const AWARDS = [
     org: 'Kotak Securities Limited',
     date: 'Jun 2022 – Dec 2024',
     description:
-      'Elevated from Management Trainee to Senior Manager in just 2 years, advancing 3 designations due to exceptional performance and measurable impact across backend engineering and automation initiatives.',
+      'Promoted 3 designations in 2 years — from Management Trainee to Senior Manager — for measurable impact in engineering and automation.',
   },
   {
     icon: Trophy,
@@ -41,7 +41,7 @@ const AWARDS = [
     org: 'Kotak Securities Limited',
     date: 'Aug 2023',
     description:
-      'Recognized with the FY23-24 Kotak Securities IT Champion Award for exemplary contribution and technical leadership across critical infrastructure and automation projects.',
+      'FY23-24 IT Champion Award for technical leadership across critical infrastructure and automation at Kotak Securities.',
   },
 ]
 
@@ -61,9 +61,6 @@ function AwardCard({ award, index, darkMode }) {
         darkMode ? 'border-blue-500/10 bg-navy-900' : 'border-slate-200 bg-white shadow-sm'
       }`}
     >
-      {/* Top accent bar */}
-      <div className={`h-1 bg-gradient-to-r ${award.color}`} />
-
       <div className="p-6">
         <div className="flex items-start gap-4">
           {/* Icon */}
