@@ -13,7 +13,7 @@ function IconGithub({ size = 14 }) {
 
 const PROJECTS = [
   {
-    title: 'Multi-Agent Trading System',
+    title: 'Satellite-Anchored Multi-Agent Trading System',
     description:
       'Multi-agent equity-trading system for Permian E&P names. Deterministic Python core with GPT-4o-mini qualitative agents for news and sentiment analysis. Backtested a satellite-anchored pre-earnings strategy: 18 trades, 83% hit rate, +13.5% return on $1M notional, 0.35 per-trade Sharpe ratio.',
     icon: TrendingUp,
@@ -29,13 +29,13 @@ const PROJECTS = [
     demo: null,
   },
   {
-    title: 'Top-Down Quantamental Stock Selection',
+    title: 'Top-Down Stock Selection Engine',
     description:
       'Multi-agent Python system running an 11-step top-down investment process: Economy → Cycle → Scenarios → Sector → Style → Factor Screen → Fundamental → Valuation → Risk → Recommendation → Report. Each agent does one job and hands off structured JSON to the next. React frontend renders the full funnel visually.',
     icon: Layers,
     color: 'from-cyan-500 to-blue-600',
     accent: 'cyan',
-    tags: ['Python', 'Multi-Agent', 'React', 'FRED', 'yfinance', 'Quantamental'],
+    tags: ['Python', 'Multi-Agent', 'React', 'FRED', 'yfinance', 'Top-Down'],
     metrics: [
       { label: 'Agents', value: '11' },
       { label: 'Method', value: 'Top-Down' },
@@ -139,9 +139,21 @@ function ProjectCard({ project, index, darkMode }) {
           <div className={`p-2.5 rounded-xl bg-gradient-to-br ${project.color} flex-shrink-0`}>
             <Icon size={18} className="text-white" />
           </div>
-          <h3 className={`text-base font-semibold leading-snug ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-            {project.title}
-          </h3>
+          <div className="flex items-center gap-2 flex-1 min-w-0">
+            <h3 className={`text-base font-semibold leading-snug ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+              {project.title}
+            </h3>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex-shrink-0 transition-colors ${darkMode ? 'text-slate-500 hover:text-white' : 'text-slate-400 hover:text-slate-900'}`}
+              >
+                <IconGithub size={15} />
+              </a>
+            )}
+          </div>
         </div>
 
         {/* Metrics */}
