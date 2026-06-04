@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import SectionWrapper, { SectionHeader } from './SectionWrapper'
-import { ExternalLink, TrendingUp, BarChart2, Activity, Brain } from 'lucide-react'
+import { ExternalLink, TrendingUp, BarChart2, Activity, Brain, Layers } from 'lucide-react'
 
 function IconGithub({ size = 14 }) {
   return (
@@ -26,6 +26,22 @@ const PROJECTS = [
       { label: 'Sharpe', value: '0.35' },
     ],
     github: 'https://github.com/pallavikochar/oil-gas-multi-agent-trading-system',
+    demo: null,
+  },
+  {
+    title: 'Top-Down Quantamental Stock Selection',
+    description:
+      'Multi-agent Python system running an 11-step top-down investment process: Economy → Cycle → Scenarios → Sector → Style → Factor Screen → Fundamental → Valuation → Risk → Recommendation → Report. Each agent does one job and hands off structured JSON to the next. React frontend renders the full funnel visually.',
+    icon: Layers,
+    color: 'from-cyan-500 to-blue-600',
+    accent: 'cyan',
+    tags: ['Python', 'Multi-Agent', 'React', 'FRED', 'yfinance', 'Quantamental'],
+    metrics: [
+      { label: 'Agents', value: '11' },
+      { label: 'Method', value: 'Top-Down' },
+      { label: 'Stack', value: 'Python + React' },
+    ],
+    github: 'https://github.com/pallavikochar/stock-selection-topdown-method',
     demo: null,
   },
   {
