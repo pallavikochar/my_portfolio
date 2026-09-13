@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import SectionWrapper, { SectionHeader } from './SectionWrapper'
-import { Mail, ArrowRight, Copy, Check, Send, User, Building2, MessageSquare } from 'lucide-react'
+import { Mail, Copy, Check } from 'lucide-react'
 
-function IconLinkedin({ size = 18 }) {
+function IconLinkedin({ size = 17 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
@@ -11,7 +11,7 @@ function IconLinkedin({ size = 18 }) {
   )
 }
 
-function IconGithub({ size = 18 }) {
+function IconGithub({ size = 17 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
@@ -20,27 +20,9 @@ function IconGithub({ size = 18 }) {
 }
 
 const QUICK_LINKS = [
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'pallavikochar8@gmail.com',
-    href: 'mailto:pallavikochar8@gmail.com',
-    copyable: true,
-  },
-  {
-    icon: IconLinkedin,
-    label: 'LinkedIn',
-    value: 'pallavikochar7',
-    href: 'https://linkedin.com/in/pallavikochar7',
-    copyable: false,
-  },
-  {
-    icon: IconGithub,
-    label: 'GitHub',
-    value: 'pallavikochar',
-    href: 'https://github.com/pallavikochar',
-    copyable: false,
-  },
+  { icon: Mail, label: 'Email', value: 'pallavikochar8@gmail.com', href: 'mailto:pallavikochar8@gmail.com', copyable: true },
+  { icon: IconLinkedin, label: 'LinkedIn', value: 'pallavikochar7', href: 'https://linkedin.com/in/pallavikochar7', copyable: false },
+  { icon: IconGithub, label: 'GitHub', value: 'pallavikochar', href: 'https://github.com/pallavikochar', copyable: false },
 ]
 
 function QuickLink({ item, darkMode }) {
@@ -55,24 +37,16 @@ function QuickLink({ item, darkMode }) {
   }
 
   return (
-    <div className={`flex items-center gap-3 p-3.5 rounded-xl border group transition-colors ${
-      darkMode
-        ? 'border-accent/10 bg-ink-900 hover:border-accent/20'
-        : 'border-stone-200 bg-white hover:border-accent/40 shadow-sm'
-    }`}>
-      <div className="p-2 rounded-lg bg-gradient-to-br from-accent to-accent-dark flex-shrink-0">
-        <Icon size={14} className="text-white" />
-      </div>
+    <div className={`flex items-center gap-3 py-3.5 border-b group ${darkMode ? 'border-rule-dark' : 'border-rule'}`}>
+      <Icon size={17} className={darkMode ? 'text-bone-soft' : 'text-ink-soft'} />
       <div className="flex-1 min-w-0">
-        <div className={`text-xs font-medium uppercase tracking-wide mb-0.5 ${darkMode ? 'text-stone-500' : 'text-stone-400'}`}>
-          {item.label}
-        </div>
+        <div className={`text-xs font-mono mb-0.5 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>{item.label}</div>
         <a
           href={item.href}
           target={item.href.startsWith('http') ? '_blank' : undefined}
           rel="noopener noreferrer"
           className={`text-sm font-medium truncate block transition-colors ${
-            darkMode ? 'text-stone-200 hover:text-accent' : 'text-stone-700 hover:text-accent'
+            darkMode ? 'text-bone hover:text-accent-light' : 'text-ink hover:text-accent'
           }`}
         >
           {item.value}
@@ -81,37 +55,31 @@ function QuickLink({ item, darkMode }) {
       {item.copyable && (
         <button
           onClick={handleCopy}
-          className={`p-1.5 rounded-lg transition-colors opacity-0 group-hover:opacity-100 ${
-            darkMode ? 'hover:bg-ink-800 text-stone-400' : 'hover:bg-stone-100 text-stone-400'
-          }`}
+          aria-label="Copy email"
+          className={`p-1.5 transition-colors ${darkMode ? 'text-bone-soft hover:text-bone' : 'text-ink-soft hover:text-ink'}`}
         >
-          {copied ? <Check size={13} className="text-market-light" /> : <Copy size={13} />}
+          {copied ? <Check size={14} className={darkMode ? 'text-pos-light' : 'text-pos'} /> : <Copy size={14} />}
         </button>
       )}
     </div>
   )
 }
 
-function InputField({ label, icon: Icon, error, darkMode, ...props }) {
+function InputField({ label, error, darkMode, ...props }) {
   return (
     <div>
-      <label className={`block text-xs font-medium uppercase tracking-wide mb-1.5 ${darkMode ? 'text-stone-400' : 'text-stone-500'}`}>
-        {label} {props.required && <span className="text-accent">*</span>}
+      <label className={`block text-xs font-mono mb-1.5 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+        {label} {props.required && '(required)'}
       </label>
-      <div className="relative">
-        <div className={`absolute left-3 top-1/2 -translate-y-1/2 ${darkMode ? 'text-stone-500' : 'text-stone-400'}`}>
-          <Icon size={15} />
-        </div>
-        <input
-          {...props}
-          className={`w-full pl-9 pr-4 py-2.5 text-sm rounded-lg border outline-none transition-colors ${
-            darkMode
-              ? 'bg-ink-800 border-accent/15 text-stone-200 placeholder-stone-600 focus:border-accent focus:bg-ink-800'
-              : 'bg-white border-stone-200 text-stone-800 placeholder-stone-400 focus:border-accent'
-          } ${error ? 'border-red-500/60' : ''}`}
-        />
-      </div>
-      {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+      <input
+        {...props}
+        className={`w-full py-2 text-sm bg-transparent border-b outline-none transition-colors ${
+          darkMode
+            ? 'border-rule-dark text-bone placeholder-bone-soft/60 focus:border-accent-light'
+            : 'border-rule text-ink placeholder-ink-soft/60 focus:border-accent'
+        } ${error ? (darkMode ? 'border-neg-light' : 'border-neg') : ''}`}
+      />
+      {error && <p className={`mt-1 text-xs ${darkMode ? 'text-neg-light' : 'text-neg'}`}>{error}</p>}
     </div>
   )
 }
@@ -158,43 +126,36 @@ export default function Contact({ darkMode }) {
   }
 
   return (
-    <SectionWrapper id="contact" className={darkMode ? 'bg-ink-950' : 'bg-stone-50'}>
+    <SectionWrapper id="contact" className={darkMode ? 'bg-charcoal' : 'bg-paper'}>
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeader
-          eyebrow="Contact"
-          title="Let's Connect"
-          darkMode={darkMode}
-        />
+        <SectionHeader eyebrow="Contact" title="Let's connect" darkMode={darkMode} />
 
         <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left: info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            {/* Availability badge */}
-            <div className={`inline-flex items-center gap-2.5 px-4 py-2 rounded-full border mb-8 ${
-              darkMode ? 'border-market/25 bg-market/5' : 'border-market/40 bg-market/10'
-            }`}>
+            <div className="inline-flex items-center gap-2.5 mb-8">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-market-light opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-market" />
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${darkMode ? 'bg-pos-light' : 'bg-pos'}`} />
+                <span className={`relative inline-flex rounded-full h-2 w-2 ${darkMode ? 'bg-pos-light' : 'bg-pos'}`} />
               </span>
-              <span className={`text-xs font-medium ${darkMode ? 'text-market-light' : 'text-market-dark'}`}>
+              <span className={`text-sm font-mono ${darkMode ? 'text-pos-light' : 'text-pos'}`}>
                 Actively looking for opportunities
               </span>
             </div>
 
-            <p className={`text-lg leading-relaxed mb-8 ${darkMode ? 'text-stone-300' : 'text-stone-700'}`}>
+            <p className={`text-lg leading-relaxed mb-8 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
               I'm looking for roles in{' '}
-              <span className={`font-semibold ${darkMode ? 'text-white' : 'text-stone-900'}`}>quantitative research</span>,{' '}
-              <span className={`font-semibold ${darkMode ? 'text-white' : 'text-stone-900'}`}>data engineering</span>, and{' '}
-              <span className={`font-semibold ${darkMode ? 'text-white' : 'text-stone-900'}`}>AI-driven fintech</span>.
+              <span className={`font-semibold ${darkMode ? 'text-bone' : 'text-ink'}`}>quantitative research</span>,{' '}
+              <span className={`font-semibold ${darkMode ? 'text-bone' : 'text-ink'}`}>data engineering</span>, and{' '}
+              <span className={`font-semibold ${darkMode ? 'text-bone' : 'text-ink'}`}>AI-driven fintech</span>.
               If you're working on something interesting, I'd love to talk.
             </p>
 
-            <div className="space-y-2.5">
+            <div className={`border-t ${darkMode ? 'border-rule-dark' : 'border-rule'}`}>
               {QUICK_LINKS.map(item => (
                 <QuickLink key={item.label} item={item} darkMode={darkMode} />
               ))}
@@ -203,122 +164,83 @@ export default function Contact({ darkMode }) {
 
           {/* Right: form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.15 }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <div className={`rounded-2xl border p-7 ${
-              darkMode ? 'border-accent/10 bg-ink-900' : 'border-stone-200 bg-white shadow-sm'
-            }`}>
-              <h3 className={`text-base font-semibold mb-5 ${darkMode ? 'text-white' : 'text-stone-900'}`}>
+            <div className={`border p-7 ${darkMode ? 'border-rule-dark' : 'border-rule'}`}>
+              <h3 className={`font-serif text-lg font-semibold mb-5 ${darkMode ? 'text-bone' : 'text-ink'}`}>
                 Send a message
               </h3>
 
               {status === 'success' ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className={`flex flex-col items-center justify-center py-12 text-center ${
-                    darkMode ? 'text-stone-300' : 'text-stone-700'
-                  }`}
-                >
-                  <div className="w-14 h-14 rounded-full bg-market/15 flex items-center justify-center mb-4">
-                    <Check size={24} className="text-market-light" />
-                  </div>
-                  <p className={`text-base font-semibold mb-1 ${darkMode ? 'text-white' : 'text-stone-900'}`}>
-                    Message received!
-                  </p>
+                <div className={`flex flex-col items-center justify-center py-12 text-center ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+                  <Check size={28} className={`mb-4 ${darkMode ? 'text-pos-light' : 'text-pos'}`} />
+                  <p className={`text-base font-semibold mb-1 ${darkMode ? 'text-bone' : 'text-ink'}`}>Message received</p>
                   <p className="text-sm">I'll get back to you soon.</p>
                   <button
                     onClick={() => setStatus('idle')}
-                    className="mt-6 text-xs text-accent hover:underline"
+                    className={`mt-6 text-sm border-b ${darkMode ? 'text-accent-light border-accent-light' : 'text-accent border-accent'}`}
                   >
                     Send another
                   </button>
-                </motion.div>
+                </div>
               ) : (
-                <form onSubmit={handleSubmit} noValidate className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                  <div className="grid sm:grid-cols-2 gap-5">
                     <InputField
-                      label="Name"
-                      icon={User}
-                      type="text"
-                      placeholder="Jane Smith"
-                      required
+                      label="Name" type="text" placeholder="Jane Smith" required
                       value={form.name}
                       onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                      error={errors.name}
-                      darkMode={darkMode}
+                      error={errors.name} darkMode={darkMode}
                     />
                     <InputField
-                      label="Email"
-                      icon={Mail}
-                      type="email"
-                      placeholder="jane@firm.com"
-                      required
+                      label="Email" type="email" placeholder="jane@firm.com" required
                       value={form.email}
                       onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                      error={errors.email}
-                      darkMode={darkMode}
+                      error={errors.email} darkMode={darkMode}
                     />
                   </div>
 
                   <InputField
-                    label="Company / Organization"
-                    icon={Building2}
-                    type="text"
-                    placeholder="Optional"
+                    label="Company / Organization" type="text" placeholder="Optional"
                     value={form.company}
                     onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
                     darkMode={darkMode}
                   />
 
                   <div>
-                    <label className={`block text-xs font-medium uppercase tracking-wide mb-1.5 ${darkMode ? 'text-stone-400' : 'text-stone-500'}`}>
-                      Message <span className="text-accent">*</span>
+                    <label className={`block text-xs font-mono mb-1.5 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+                      Message (required)
                     </label>
-                    <div className="relative">
-                      <div className={`absolute left-3 top-3 ${darkMode ? 'text-stone-500' : 'text-stone-400'}`}>
-                        <MessageSquare size={15} />
-                      </div>
-                      <textarea
-                        rows={4}
-                        placeholder="Feel free to say hi, share an idea, or explore something together..."
-                        value={form.message}
-                        onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                        className={`w-full pl-9 pr-4 py-2.5 text-sm rounded-lg border outline-none transition-colors resize-none ${
-                          darkMode
-                            ? 'bg-ink-800 border-accent/15 text-stone-200 placeholder-stone-600 focus:border-accent'
-                            : 'bg-white border-stone-200 text-stone-800 placeholder-stone-400 focus:border-accent'
-                        } ${errors.message ? 'border-red-500/60' : ''}`}
-                      />
-                    </div>
-                    {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
+                    <textarea
+                      rows={4}
+                      placeholder="Feel free to say hi, share an idea, or explore something together."
+                      value={form.message}
+                      onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                      className={`w-full py-2 text-sm bg-transparent border-b outline-none transition-colors resize-none ${
+                        darkMode
+                          ? 'border-rule-dark text-bone placeholder-bone-soft/60 focus:border-accent-light'
+                          : 'border-rule text-ink placeholder-ink-soft/60 focus:border-accent'
+                      } ${errors.message ? (darkMode ? 'border-neg-light' : 'border-neg') : ''}`}
+                    />
+                    {errors.message && <p className={`mt-1 text-xs ${darkMode ? 'text-neg-light' : 'text-neg'}`}>{errors.message}</p>}
                   </div>
 
                   {status === 'error' && (
-                    <p className="text-xs text-red-400">Something went wrong. Please email me directly.</p>
+                    <p className={`text-xs ${darkMode ? 'text-neg-light' : 'text-neg'}`}>Something went wrong. Please email me directly.</p>
                   )}
 
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="w-full flex items-center justify-center gap-2 py-3 px-6 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-accent/25 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className={`w-full py-3 px-6 text-sm font-semibold border transition-colors disabled:opacity-60 disabled:cursor-not-allowed ${
+                      darkMode
+                        ? 'bg-accent-light text-charcoal border-accent-light hover:bg-bone'
+                        : 'bg-accent text-paper border-accent hover:bg-ink'
+                    }`}
                   >
-                    {status === 'loading' ? (
-                      <>
-                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-                        </svg>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={15} />
-                        Send Message
-                      </>
-                    )}
+                    {status === 'loading' ? 'Sending' : 'Send message'}
                   </button>
                 </form>
               )}

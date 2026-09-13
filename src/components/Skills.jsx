@@ -2,17 +2,9 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import SectionWrapper, { SectionHeader } from './SectionWrapper'
 
-const ACCENT_TEXT = {
-  steel: { dark: 'text-steel-light', light: 'text-steel-dark' },
-  accent: { dark: 'text-accent-light', light: 'text-accent-dark' },
-  rust: { dark: 'text-rust-light', light: 'text-rust-dark' },
-  market: { dark: 'text-market-light', light: 'text-market-dark' },
-}
-
 const SKILL_GROUPS = [
   {
     category: 'Technical',
-    accent: 'steel',
     skills: [
       'Python', 'SQL (SQL Server, PostgreSQL)', 'R', 'C++', 'C# / .NET',
       'AWS (S3, Lambda, Glue, ECS)', 'Apache Kafka', 'Docker',
@@ -21,7 +13,6 @@ const SKILL_GROUPS = [
   },
   {
     category: 'Finance & Quant',
-    accent: 'accent',
     skills: [
       'Monte Carlo Simulation', 'Stochastic Modeling', 'GARCH', 'VaR',
       'Expected Shortfall', 'MLE', 'Black-Scholes', 'Binomial Trees',
@@ -30,7 +21,6 @@ const SKILL_GROUPS = [
   },
   {
     category: 'Machine Learning',
-    accent: 'rust',
     skills: [
       'Probability & Stochastic Processes', 'Linear Algebra', 'Time Series Analysis',
       'XGBoost', 'LightGBM', 'Neural Networks', 'Bayesian Optimization',
@@ -39,7 +29,6 @@ const SKILL_GROUPS = [
   },
   {
     category: 'AI Tools & Systems',
-    accent: 'market',
     skills: [
       'Agentic AI', 'GenAI', 'Anthropic API / Claude Code',
       'Multi-Agent Orchestration', 'MCP (Model Context Protocol)',
@@ -58,7 +47,6 @@ const CERTIFICATIONS = [
 function SkillRow({ group, index, darkMode }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
-  const accentClass = ACCENT_TEXT[group.accent][darkMode ? 'dark' : 'light']
 
   return (
     <motion.div
@@ -68,9 +56,9 @@ function SkillRow({ group, index, darkMode }) {
       transition={{ duration: 0.5, delay: index * 0.06 }}
       className="py-6 grid sm:grid-cols-[190px_1fr] gap-2 sm:gap-8"
     >
-      <h3 className={`font-serif text-lg ${accentClass}`}>{group.category}</h3>
-      <p className={`text-[15px] leading-relaxed ${darkMode ? 'text-stone-300' : 'text-stone-700'}`}>
-        {group.skills.join('  ·  ')}
+      <h3 className={`font-serif text-lg ${darkMode ? 'text-accent-light' : 'text-accent'}`}>{group.category}</h3>
+      <p className={`text-[15px] leading-relaxed ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+        {group.skills.join(', ')}
       </p>
     </motion.div>
   )
@@ -78,26 +66,26 @@ function SkillRow({ group, index, darkMode }) {
 
 export default function Skills({ darkMode }) {
   return (
-    <SectionWrapper id="skills" className={darkMode ? 'bg-ink-950' : 'bg-stone-50'}>
+    <SectionWrapper id="skills" className={darkMode ? 'bg-charcoal' : 'bg-paper'}>
       <div className="max-w-4xl mx-auto px-6">
         <SectionHeader
           eyebrow="Skills"
-          title="Technical Toolkit"
+          title="Technical toolkit"
           subtitle="Across quant finance, data engineering, machine learning, and AI systems."
           darkMode={darkMode}
         />
 
-        <div className={`border-t border-b divide-y ${darkMode ? 'border-stone-800 divide-stone-800' : 'border-stone-200 divide-stone-200'}`}>
+        <div className={`border-t border-b divide-y ${darkMode ? 'border-rule-dark divide-rule-dark' : 'border-rule divide-rule'}`}>
           {SKILL_GROUPS.map((group, i) => (
             <SkillRow key={group.category} group={group} index={i} darkMode={darkMode} />
           ))}
         </div>
 
-        <div className={`mt-8 text-sm ${darkMode ? 'text-stone-400' : 'text-stone-500'}`}>
-          <span className={`font-mono text-xs uppercase tracking-wider mr-3 ${darkMode ? 'text-stone-500' : 'text-stone-400'}`}>
-            Certifications
+        <div className={`mt-8 text-sm ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+          <span className={`font-mono text-xs mr-3 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+            Certifications:
           </span>
-          {CERTIFICATIONS.join('  ·  ')}
+          {CERTIFICATIONS.join(', ')}
         </div>
       </div>
     </SectionWrapper>

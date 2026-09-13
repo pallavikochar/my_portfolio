@@ -5,51 +5,30 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: {
-          950: '#0d0c0a',
-          900: '#17140f',
-          800: '#211d16',
-          700: '#2b251c',
-        },
-        accent: {
-          DEFAULT: '#c9973d',
-          light: '#e0b563',
-          dark: '#9c7529',
-        },
-        market: {
-          DEFAULT: '#3e7a52',
-          light: '#5fa377',
-          dark: '#2c5a3c',
-        },
-        rust: {
-          DEFAULT: '#a6512c',
-          light: '#c97347',
-          dark: '#7c3b1e',
-        },
-        steel: {
-          DEFAULT: '#4a6b7a',
-          light: '#6e93a3',
-          dark: '#354f5a',
-        },
+        // Paper / graphite: the two surfaces. Neither cream nor near-black neon.
+        paper: '#F4F4F1',
+        charcoal: '#1B1C1F',
+        // Text
+        ink: '#1B1D22',
+        'ink-soft': '#565A63',
+        bone: '#E8E7E2',
+        'bone-soft': '#93938C',
+        // Hairlines, no shadows anywhere
+        rule: '#D8D8D3',
+        'rule-dark': '#333336',
+        // The one interactive color: institutional navy, not a gradient
+        accent: '#1E3A5F',
+        'accent-light': '#7B9CC4',
+        // Functional only: real positive/negative metrics, never decorative
+        pos: '#1F6F4A',
+        'pos-light': '#4E9B74',
+        neg: '#A32F2F',
+        'neg-light': '#C1615A',
       },
       fontFamily: {
         serif: ['Fraunces', 'Georgia', 'serif'],
         sans: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'monospace'],
-      },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'gradient-x': 'gradient-x 8s ease infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
-        'gradient-x': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
       },
     },
   },

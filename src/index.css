@@ -14,68 +14,30 @@
   body {
     margin: 0;
     font-family: 'IBM Plex Sans', system-ui, sans-serif;
-    background-color: #0d0c0a;
-    color: #f2efe9;
+    background-color: #1B1C1F;
+    color: #E8E7E2;
   }
   #root {
     min-height: 100vh;
   }
   ::selection {
-    background: rgba(201, 151, 61, 0.3);
+    background: rgba(30, 58, 95, 0.35);
     color: #fff;
   }
   ::-webkit-scrollbar {
     width: 4px;
   }
   ::-webkit-scrollbar-track {
-    background: #0d0c0a;
+    background: #1B1C1F;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(201, 151, 61, 0.4);
+    background: rgba(123, 156, 196, 0.4);
     border-radius: 2px;
-  }
-}
-
-@layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, #e0b563 0%, #c9973d 50%, #9c7529 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .text-gradient-light {
-    background: linear-gradient(135deg, #9c7529 0%, #c9973d 50%, #a6512c 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .glass {
-    background: rgba(23, 20, 15, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(201, 151, 61, 0.12);
-  }
-  .glass-light {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(201, 151, 61, 0.2);
-  }
-  .glow {
-    box-shadow: 0 0 30px rgba(201, 151, 61, 0.15);
-  }
-  .card-hover {
-    transition: all 0.3s ease;
-  }
-  .card-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(201, 151, 61, 0.12);
-    border-color: rgba(201, 151, 61, 0.3);
   }
 }
 
 /* Light mode overrides */
 .light body {
-  background-color: #faf7f0;
-  color: #1c1812;
+  background-color: #F4F4F1;
+  color: #1B1D22;
 }

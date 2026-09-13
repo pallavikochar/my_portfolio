@@ -10,7 +10,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(true)
+  const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
     if (darkMode) {
@@ -23,7 +23,7 @@ export default function App() {
   }, [darkMode])
 
   return (
-    <div className={darkMode ? 'bg-ink-950' : 'bg-stone-50'}>
+    <div className={darkMode ? 'bg-charcoal' : 'bg-paper'}>
       <Navbar darkMode={darkMode} toggleDark={() => setDarkMode(d => !d)} />
       <main>
         <Hero darkMode={darkMode} />

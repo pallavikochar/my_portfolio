@@ -1,5 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowDown, Mail } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Mail } from 'lucide-react'
 
 function IconGithub({ size = 20 }) {
   return (
@@ -17,79 +17,25 @@ function IconLinkedin({ size = 20 }) {
   )
 }
 
-// Ticker-tape strip of real result metrics — the signature element
-const TICKER_METRICS = [
-  '13.9% CAGR', '2.1% ALPHA', '0.35 SHARPE', '83% HIT RATE',
-  '$0.74 MC STD ERROR', '95% VaR CONFIDENCE', '11 RESEARCH AGENTS', '160K SEC FILING CHUNKS',
+// Real results, shown once as a static table, not a decorative scrolling ticker.
+const METRICS = [
+  { value: '13.9%', label: 'CAGR' },
+  { value: '2.1%', label: 'Alpha' },
+  { value: '0.35', label: 'Sharpe' },
+  { value: '83%', label: 'Hit rate' },
+  { value: '$0.74', label: 'MC std error' },
+  { value: '95%', label: 'VaR confidence' },
+  { value: '11', label: 'Research agents' },
+  { value: '160K', label: 'SEC filing chunks' },
 ]
 
-function MetricsTicker({ darkMode }) {
-  const reduceMotion = useReducedMotion()
-  const items = reduceMotion ? TICKER_METRICS : [...TICKER_METRICS, ...TICKER_METRICS]
-
-  return (
-    <div
-      className={`absolute bottom-0 left-0 right-0 border-t py-2.5 ${
-        reduceMotion ? 'overflow-x-auto' : 'overflow-hidden'
-      } ${darkMode ? 'border-accent/10 bg-ink-950/70' : 'border-accent/20 bg-white/70'} backdrop-blur-sm`}
-    >
-      <motion.div
-        className="flex gap-10 whitespace-nowrap font-mono text-[11px] tracking-widest uppercase w-max"
-        animate={reduceMotion ? undefined : { x: ['0%', '-50%'] }}
-        transition={reduceMotion ? undefined : { duration: 32, repeat: Infinity, ease: 'linear' }}
-      >
-        {items.map((m, i) => (
-          <span key={i} className="flex items-center gap-10">
-            <span className={darkMode ? 'text-accent-light/80' : 'text-accent-dark'}>{m}</span>
-            <span className={darkMode ? 'text-stone-700' : 'text-stone-300'}>·</span>
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  )
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
 }
-
-// Subtle animated grid
-function GridBackground({ darkMode }) {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Radial gradient glow */}
-      <div className={`absolute inset-0 ${
-        darkMode
-          ? 'bg-[radial-gradient(ellipse_at_center,_rgba(201,151,61,0.07)_0%,_transparent_60%)]'
-          : 'bg-gradient-to-br from-amber-50 via-stone-50 to-orange-50/60'
-      }`} />
-
-      {/* Grid lines */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-[0.04]"
-        aria-hidden
-      >
-        <defs>
-          <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke={darkMode ? '#c9973d' : '#9c7529'} strokeWidth="0.8" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
-      </svg>
-
-      {/* Glow blobs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-accent/5 blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-rust/5 blur-3xl" />
-    </div>
-  )
-}
-
-// Floating data node
-function FloatingNode({ x, y, delay, size = 4 }) {
-  return (
-    <motion.div
-      className="absolute rounded-full bg-accent/40 border border-accent/60"
-      style={{ left: `${x}%`, top: `${y}%`, width: size, height: size }}
-      animate={{ y: [-8, 8, -8], opacity: [0.4, 0.8, 0.4] }}
-      transition={{ duration: 4 + delay, repeat: Infinity, ease: 'easeInOut', delay }}
-    />
-  )
+const item = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
 export default function Hero({ darkMode }) {
@@ -97,176 +43,126 @@ export default function Hero({ darkMode }) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const nodes = [
-    { x: 15, y: 20, delay: 0, size: 5 },
-    { x: 80, y: 15, delay: 0.8, size: 4 },
-    { x: 88, y: 60, delay: 1.5, size: 6 },
-    { x: 10, y: 70, delay: 0.3, size: 4 },
-    { x: 50, y: 10, delay: 1.1, size: 3 },
-    { x: 70, y: 80, delay: 0.6, size: 5 },
-    { x: 25, y: 85, delay: 1.8, size: 4 },
-    { x: 60, y: 30, delay: 0.9, size: 3 },
-  ]
-
   return (
     <section
       id="hero"
-      className={`relative min-h-screen flex flex-col justify-center overflow-hidden ${
-        darkMode ? 'bg-ink-950' : 'bg-stone-50'
-      }`}
+      className={`relative pt-36 pb-20 ${darkMode ? 'bg-charcoal' : 'bg-paper'}`}
     >
-      <GridBackground darkMode={darkMode} />
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="max-w-5xl mx-auto px-6"
+      >
+        <motion.div variants={item} className={`text-sm font-mono mb-6 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+          <span className={darkMode ? 'text-accent-light' : 'text-accent'}>{'// '}</span>
+          pallavi kochar, quantitative research and systems engineering
+        </motion.div>
 
-      {/* Floating nodes */}
-      <div className="absolute inset-0 pointer-events-none">
-        {nodes.map((n, i) => (
-          <FloatingNode key={i} {...n} />
-        ))}
-      </div>
+        <motion.h1
+          variants={item}
+          className={`font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.15] mb-8 max-w-4xl ${
+            darkMode ? 'text-bone' : 'text-ink'
+          }`}
+        >
+          Derives the GARCH log-likelihood by hand.
+          <br />
+          Ships the pipeline that trades on it.
+        </motion.h1>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-20">
-        <div className="max-w-3xl">
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-6 inline-flex items-center gap-2"
-          >
-            <span className="h-px w-8 bg-accent" />
-            <span className={`text-sm font-mono tracking-widest uppercase ${darkMode ? 'text-accent-light' : 'text-accent-dark'}`}>
-              Portfolio
-            </span>
-          </motion.div>
+        <motion.p
+          variants={item}
+          className={`text-lg leading-relaxed mb-12 max-w-2xl ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}
+        >
+          I work across derivative pricing, multi-agent research systems, and the production
+          infrastructure underneath them. MS in Finance (Quantitative Finance and Data Analytics),
+          University of Illinois Urbana-Champaign. B.Tech in Chemical Engineering, IIT Bombay.
+          Three years of backend engineering at Kotak Securities before that.
+        </motion.p>
 
-          {/* Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6"
-          >
-            <span className={darkMode ? 'text-white' : 'text-stone-900'}>Pallavi</span>{' '}
-            <span className="text-gradient">Kochar</span>
-          </motion.h1>
-
-          {/* Positioning statement */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35 }}
-            className={`text-lg sm:text-xl lg:text-2xl font-light leading-relaxed mb-4 max-w-2xl ${
-              darkMode ? 'text-stone-300' : 'text-stone-600'
+        <motion.div variants={item} className="flex flex-wrap items-center gap-x-8 gap-y-4 mb-16">
+          <button
+            onClick={() => handleScroll('projects')}
+            className={`px-5 py-2.5 text-sm font-semibold border transition-colors ${
+              darkMode
+                ? 'bg-accent-light text-charcoal border-accent-light hover:bg-bone'
+                : 'bg-accent text-paper border-accent hover:bg-ink'
             }`}
           >
-            Quantitative finance professional building at the intersection of{' '}
-            <span className={`font-medium ${darkMode ? 'text-white' : 'text-stone-900'}`}>
-              markets, data, and AI
-            </span>
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className={`text-sm sm:text-base mb-10 ${darkMode ? 'text-stone-500' : 'text-stone-500'}`}
+            View work
+          </button>
+          <a
+            href="/Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`text-sm font-semibold border-b pb-0.5 transition-colors ${
+              darkMode
+                ? 'text-bone border-bone-soft hover:border-accent-light hover:text-accent-light'
+                : 'text-ink border-ink-soft hover:border-accent hover:text-accent'
+            }`}
           >
-            MS · UIUC &nbsp;|&nbsp; B.Tech · IIT Bombay
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap gap-4 mb-12"
+            Résumé
+          </a>
+          <button
+            onClick={() => handleScroll('contact')}
+            className={`text-sm font-semibold border-b pb-0.5 transition-colors ${
+              darkMode
+                ? 'text-bone-soft border-transparent hover:text-bone hover:border-bone-soft'
+                : 'text-ink-soft border-transparent hover:text-ink hover:border-ink-soft'
+            }`}
           >
-            <button
-              onClick={() => handleScroll('projects')}
-              className="px-6 py-3 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-accent/25"
-            >
-              View Work
-            </button>
-            <a
-              href="/Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`px-6 py-3 text-sm font-semibold rounded-lg border transition-all duration-200 ${
-                darkMode
-                  ? 'border-stone-600 text-stone-300 hover:border-accent hover:text-accent'
-                  : 'border-stone-300 text-stone-700 hover:border-accent hover:text-accent'
-              }`}
-            >
-              Resume
-            </a>
-            <button
-              onClick={() => handleScroll('contact')}
-              className={`px-6 py-3 text-sm font-semibold rounded-lg transition-all duration-200 ${
-                darkMode
-                  ? 'text-stone-400 hover:text-white'
-                  : 'text-stone-600 hover:text-stone-900'
-              }`}
-            >
-              Contact →
-            </button>
-          </motion.div>
+            Contact
+          </button>
 
-          {/* Social links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.75 }}
-            className="flex items-center gap-5"
-          >
+          <div className="flex items-center gap-4 sm:ml-auto">
             <a
               href="mailto:pallavikochar8@gmail.com"
               aria-label="Email"
-              className={`transition-colors ${darkMode ? 'text-stone-500 hover:text-accent' : 'text-stone-400 hover:text-accent'}`}
+              className={`transition-colors ${darkMode ? 'text-bone-soft hover:text-accent-light' : 'text-ink-soft hover:text-accent'}`}
             >
-              <Mail size={20} />
+              <Mail size={19} />
             </a>
             <a
               href="https://linkedin.com/in/pallavikochar7"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className={`transition-colors ${darkMode ? 'text-stone-500 hover:text-accent' : 'text-stone-400 hover:text-accent'}`}
+              className={`transition-colors ${darkMode ? 'text-bone-soft hover:text-accent-light' : 'text-ink-soft hover:text-accent'}`}
             >
-              <IconLinkedin size={20} />
+              <IconLinkedin size={19} />
             </a>
             <a
               href="https://github.com/pallavikochar"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className={`transition-colors ${darkMode ? 'text-stone-500 hover:text-accent' : 'text-stone-400 hover:text-accent'}`}
+              className={`transition-colors ${darkMode ? 'text-bone-soft hover:text-accent-light' : 'text-ink-soft hover:text-accent'}`}
             >
-              <IconGithub size={20} />
+              <IconGithub size={19} />
             </a>
-          </motion.div>
-        </div>
-      </div>
+          </div>
+        </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-        className="absolute bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className={`text-xs font-mono tracking-widest uppercase ${darkMode ? 'text-stone-600' : 'text-stone-400'}`}>
-          scroll
-        </span>
+        {/* Real result metrics, laid out as a static table */}
         <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          variants={item}
+          className={`grid grid-cols-2 sm:grid-cols-4 border-t border-l ${darkMode ? 'border-rule-dark' : 'border-rule'}`}
         >
-          <ArrowDown size={14} className={darkMode ? 'text-stone-600' : 'text-stone-400'} />
+          {METRICS.map((m) => (
+            <div
+              key={m.label}
+              className={`px-4 py-4 border-b border-r ${darkMode ? 'border-rule-dark' : 'border-rule'}`}
+            >
+              <div className={`font-mono tabular-nums text-xl sm:text-2xl font-medium ${darkMode ? 'text-bone' : 'text-ink'}`}>
+                {m.value}
+              </div>
+              <div className={`text-xs mt-1 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+                {m.label}
+              </div>
+            </div>
+          ))}
         </motion.div>
       </motion.div>
-
-      <MetricsTicker darkMode={darkMode} />
     </section>
   )
 }

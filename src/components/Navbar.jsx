@@ -44,12 +44,12 @@ export default function Navbar({ darkMode, toggleDark }) {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${
         scrolled
           ? darkMode
-            ? 'bg-ink-950/90 backdrop-blur-md border-b border-accent/10 shadow-lg shadow-black/20'
-            : 'bg-white/90 backdrop-blur-md border-b border-accent/10 shadow-lg shadow-black/5'
-          : 'bg-transparent'
+            ? 'bg-charcoal/90 backdrop-blur-md border-rule-dark'
+            : 'bg-paper/90 backdrop-blur-md border-rule'
+          : 'bg-transparent border-transparent'
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -57,9 +57,9 @@ export default function Navbar({ darkMode, toggleDark }) {
         <a
           href="#hero"
           onClick={e => { e.preventDefault(); handleNavClick('#hero') }}
-          className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-accent-dark shadow-lg shadow-accent/25"
+          className={`flex items-center justify-center w-9 h-9 ${darkMode ? 'bg-accent-light' : 'bg-accent'}`}
         >
-          <span className="font-serif text-base font-bold tracking-wide text-white leading-none">PK</span>
+          <span className={`font-serif text-sm font-bold leading-none ${darkMode ? 'text-charcoal' : 'text-paper'}`}>PK</span>
         </a>
 
         {/* Desktop links */}
@@ -71,19 +71,17 @@ export default function Navbar({ darkMode, toggleDark }) {
               <li key={href}>
                 <button
                   onClick={() => handleNavClick(href)}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                     active
-                      ? 'text-accent'
-                      : darkMode
-                        ? 'text-stone-400 hover:text-white'
-                        : 'text-stone-600 hover:text-stone-900'
+                      ? darkMode ? 'text-accent-light' : 'text-accent'
+                      : darkMode ? 'text-bone-soft hover:text-bone' : 'text-ink-soft hover:text-ink'
                   }`}
                 >
                   {label}
                   {active && (
                     <motion.span
                       layoutId="nav-indicator"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-4 bg-accent rounded-full"
+                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-4 ${darkMode ? 'bg-accent-light' : 'bg-accent'}`}
                     />
                   )}
                 </button>
@@ -97,10 +95,8 @@ export default function Navbar({ darkMode, toggleDark }) {
           <button
             onClick={toggleDark}
             aria-label="Toggle theme"
-            className={`p-2 rounded-lg transition-colors ${
-              darkMode
-                ? 'text-stone-400 hover:text-white hover:bg-white/5'
-                : 'text-stone-600 hover:text-stone-900 hover:bg-black/5'
+            className={`p-2 transition-colors ${
+              darkMode ? 'text-bone-soft hover:text-bone' : 'text-ink-soft hover:text-ink'
             }`}
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
@@ -109,14 +105,18 @@ export default function Navbar({ darkMode, toggleDark }) {
           <a
             href="#contact"
             onClick={e => { e.preventDefault(); handleNavClick('#contact') }}
-            className="hidden md:inline-flex items-center px-4 py-2 text-sm font-semibold rounded-lg bg-accent text-white hover:bg-accent-dark transition-colors"
+            className={`hidden md:inline-flex items-center px-4 py-2 text-sm font-semibold border transition-colors ${
+              darkMode
+                ? 'bg-accent-light text-charcoal border-accent-light hover:bg-bone'
+                : 'bg-accent text-paper border-accent hover:bg-ink'
+            }`}
           >
             Get in touch
           </a>
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 rounded-lg text-stone-400 hover:text-white"
+            className={`md:hidden p-2 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}
             onClick={() => setMenuOpen(o => !o)}
             aria-label="Toggle menu"
           >
@@ -132,19 +132,17 @@ export default function Navbar({ darkMode, toggleDark }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={`md:hidden overflow-hidden ${
-              darkMode ? 'bg-ink-950/95 border-b border-accent/10' : 'bg-white/95 border-b border-accent/10'
-            } backdrop-blur-md`}
+            className={`md:hidden overflow-hidden border-t ${
+              darkMode ? 'bg-charcoal border-rule-dark' : 'bg-paper border-rule'
+            }`}
           >
             <ul className="px-6 py-4 flex flex-col gap-1">
               {NAV_LINKS.map(({ label, href }) => (
                 <li key={href}>
                   <button
                     onClick={() => handleNavClick(href)}
-                    className={`w-full text-left px-4 py-3 text-sm font-medium rounded-md transition-colors ${
-                      darkMode
-                        ? 'text-stone-300 hover:text-white hover:bg-white/5'
-                        : 'text-stone-700 hover:text-stone-900 hover:bg-black/5'
+                    className={`w-full text-left px-4 py-3 text-sm font-medium transition-colors ${
+                      darkMode ? 'text-bone-soft hover:text-bone' : 'text-ink-soft hover:text-ink'
                     }`}
                   >
                     {label}
@@ -154,7 +152,9 @@ export default function Navbar({ darkMode, toggleDark }) {
               <li>
                 <button
                   onClick={() => handleNavClick('#contact')}
-                  className="w-full mt-2 px-4 py-3 text-sm font-semibold rounded-lg bg-accent text-white text-center"
+                  className={`w-full mt-2 px-4 py-3 text-sm font-semibold text-center ${
+                    darkMode ? 'bg-accent-light text-charcoal' : 'bg-accent text-paper'
+                  }`}
                 >
                   Get in touch
                 </button>
