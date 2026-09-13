@@ -139,7 +139,7 @@ export default function Projects({ darkMode }) {
       <div className="max-w-4xl mx-auto px-6">
         <SectionHeader
           eyebrow="Projects"
-          title="Selected work"
+          title="Key Projects"
           subtitle="Quantitative research, derivative pricing, and AI-driven systems. All results are real."
           darkMode={darkMode}
         />
