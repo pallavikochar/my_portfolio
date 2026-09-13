@@ -123,7 +123,7 @@ export default function Hero({ darkMode }) {
   return (
     <section
       id="hero"
-      className={`relative pt-36 pb-0 overflow-hidden ${darkMode ? 'bg-charcoal' : 'bg-paper'}`}
+      className={`relative pt-28 pb-0 overflow-hidden ${darkMode ? 'bg-charcoal' : 'bg-paper'}`}
     >
       <motion.div
         variants={container}
@@ -131,14 +131,14 @@ export default function Hero({ darkMode }) {
         animate="show"
         className="relative z-10 max-w-5xl mx-auto px-6"
       >
-        <motion.div variants={item} className={`flex items-center gap-2.5 mb-6 text-sm font-mono ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+        <motion.div variants={item} className={`flex items-center gap-2.5 mb-5 text-sm font-mono ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
           <span className={`h-px w-5 ${darkMode ? 'bg-bone-soft' : 'bg-ink-soft'}`} />
           Pallavi Kochar, quantitative research and systems engineering
         </motion.div>
 
         <motion.h1
           variants={item}
-          className={`font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.15] mb-8 max-w-4xl ${
+          className={`font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.15] mb-6 max-w-4xl ${
             darkMode ? 'text-bone' : 'text-ink'
           }`}
         >
@@ -147,7 +147,7 @@ export default function Hero({ darkMode }) {
 
         <motion.p
           variants={item}
-          className={`text-lg leading-relaxed mb-12 max-w-2xl ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}
+          className={`text-lg leading-relaxed mb-8 max-w-2xl ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}
         >
           I work across derivative pricing, multi-agent research systems, and the production
           infrastructure underneath them. MS in Finance (Quantitative Finance and Data Analytics),
@@ -155,7 +155,7 @@ export default function Hero({ darkMode }) {
           Three years of backend engineering at Kotak Securities before that.
         </motion.p>
 
-        <motion.div variants={item} className="flex flex-wrap items-center gap-x-8 gap-y-4 mb-16">
+        <motion.div variants={item} className="flex flex-wrap items-center gap-x-8 gap-y-4 mb-10">
           <button
             onClick={() => handleScroll('projects')}
             className={`px-5 py-2.5 text-sm font-semibold border transition-colors ${
@@ -239,7 +239,7 @@ export default function Hero({ darkMode }) {
         </motion.div>
       </motion.div>
 
-      <div className={`relative h-28 sm:h-36 mt-16 border-t ${darkMode ? 'border-rule-dark' : 'border-rule'}`}>
+      <div className={`relative h-28 sm:h-36 mt-12 border-t ${darkMode ? 'border-rule-dark' : 'border-rule'}`}>
         <MarketBackground darkMode={darkMode} />
       </div>
     </section>

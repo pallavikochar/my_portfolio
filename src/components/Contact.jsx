@@ -130,7 +130,7 @@ export default function Contact({ darkMode }) {
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader eyebrow="Contact" title="Let's connect" darkMode={darkMode} />
 
-        <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-start">
+        <div ref={ref} className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left: info */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}

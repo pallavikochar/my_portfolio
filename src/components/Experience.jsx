@@ -1,5 +1,6 @@
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 import SectionWrapper, { SectionHeader } from './SectionWrapper'
 
 const EXPERIENCES = [
@@ -79,73 +80,84 @@ const EXPERIENCES = [
   },
 ]
 
-function ExperienceRow({ exp, index, darkMode }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
+function ExperienceCard({ exp, darkMode }) {
+  const [open, setOpen] = useState(false)
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 16 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      className="py-8"
-    >
-      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-4">
-        <div>
-          <h3 className={`font-serif text-xl font-semibold ${darkMode ? 'text-bone' : 'text-ink'}`}>
+    <div className={`border p-5 flex flex-col ${darkMode ? 'border-rule-dark' : 'border-rule'}`}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        className="w-full text-left"
+      >
+        <div className="flex items-start justify-between gap-3">
+          <h3 className={`font-serif text-lg font-semibold leading-snug ${darkMode ? 'text-bone' : 'text-ink'}`}>
             {exp.role}
           </h3>
-          <p className={`text-base font-medium mt-0.5 ${darkMode ? 'text-accent-light' : 'text-accent'}`}>
-            {exp.company}
-          </p>
+          <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }} className="flex-shrink-0 mt-1">
+            <ChevronDown size={16} className={darkMode ? 'text-bone-soft' : 'text-ink-soft'} />
+          </motion.div>
         </div>
-        <div className={`text-right text-sm font-mono ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
-          <div>{exp.period}</div>
-          <div className="mt-0.5">{exp.location} / {exp.type}</div>
+        <p className={`text-sm font-medium mt-0.5 ${darkMode ? 'text-accent-light' : 'text-accent'}`}>{exp.company}</p>
+        <div className={`text-xs font-mono mt-2 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+          {exp.period}
+          <br />
+          {exp.location} / {exp.type}
         </div>
-      </div>
+      </button>
 
-      {exp.note && (
-        <p className={`text-sm mb-3 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>{exp.note}</p>
-      )}
-
-      <ul className="space-y-2 mb-4">
-        {exp.bullets.map((b, i) => (
-          <li key={i} className={`text-sm leading-relaxed pl-4 border-l ${darkMode ? 'text-bone-soft border-rule-dark' : 'text-ink-soft border-rule'}`}>
-            {b}
-          </li>
-        ))}
-      </ul>
-
-      <div className="flex flex-wrap gap-1.5">
-        {exp.tags.map(t => (
-          <span
-            key={t}
-            className={`px-2 py-0.5 text-xs font-mono border ${darkMode ? 'border-rule-dark text-bone-soft' : 'border-rule text-ink-soft'}`}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="overflow-hidden"
           >
-            {t}
-          </span>
-        ))}
-      </div>
-    </motion.div>
+            <div className={`pt-4 mt-4 border-t ${darkMode ? 'border-rule-dark' : 'border-rule'}`}>
+              {exp.note && (
+                <p className={`text-sm mb-3 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>{exp.note}</p>
+              )}
+              <ul className="space-y-2 mb-4">
+                {exp.bullets.map((b, i) => (
+                  <li key={i} className={`text-sm leading-relaxed pl-3 border-l ${darkMode ? 'text-bone-soft border-rule-dark' : 'text-ink-soft border-rule'}`}>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-1.5">
+                {exp.tags.map(t => (
+                  <span
+                    key={t}
+                    className={`px-2 py-0.5 text-xs font-mono border ${darkMode ? 'border-rule-dark text-bone-soft' : 'border-rule text-ink-soft'}`}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
 export default function Experience({ darkMode }) {
   return (
     <SectionWrapper id="experience" className={darkMode ? 'bg-charcoal' : 'bg-paper'}>
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           eyebrow="Experience"
           title="Professional Experience"
-          subtitle="Three years of production engineering, quant research internships, and AI/ML development."
+          subtitle="Three years of production engineering, quant research internships, and AI/ML development. Click a card to expand."
           darkMode={darkMode}
         />
 
-        <div className={`divide-y border-t border-b ${darkMode ? 'divide-rule-dark border-rule-dark' : 'divide-rule border-rule'}`}>
-          {EXPERIENCES.map((exp, i) => (
-            <ExperienceRow key={exp.company} exp={exp} index={i} darkMode={darkMode} />
+        <div className="grid sm:grid-cols-2 gap-6">
+          {EXPERIENCES.map(exp => (
+            <ExperienceCard key={exp.company} exp={exp} darkMode={darkMode} />
           ))}
         </div>
       </div>

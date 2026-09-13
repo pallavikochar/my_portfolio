@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useState } from 'react'
 import SectionWrapper, { SectionHeader } from './SectionWrapper'
 
 function IconGithub({ size = 15 }) {
@@ -73,80 +72,94 @@ const PROJECTS = [
   },
 ]
 
-function ProjectRow({ project, index, darkMode }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-40px' })
+function ProjectCard({ project, darkMode }) {
+  const [flipped, setFlipped] = useState(false)
+  const face = `flip-card-face border p-5 flex flex-col ${darkMode ? 'border-rule-dark bg-charcoal' : 'border-rule bg-paper'}`
+  const tagClass = `px-2 py-0.5 text-xs font-mono border ${darkMode ? 'border-rule-dark text-bone-soft' : 'border-rule text-ink-soft'}`
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 16 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: (index % 2) * 0.06 }}
-      className="py-8"
+    <div
+      role="button"
+      tabIndex={0}
+      aria-pressed={flipped}
+      aria-label={`${project.title}. Press to ${flipped ? 'show summary' : 'show description'}.`}
+      onClick={() => setFlipped(f => !f)}
+      onKeyDown={e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setFlipped(f => !f) }
+      }}
+      className={`flip-card h-72 cursor-pointer ${flipped ? 'is-flipped' : ''}`}
     >
-      <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2 mb-4">
-        <h3 className={`font-serif text-xl font-semibold max-w-2xl ${darkMode ? 'text-bone' : 'text-ink'}`}>
-          {project.title}
-        </h3>
-        {project.github && (
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center gap-1.5 text-xs font-mono transition-colors ${
-              darkMode ? 'text-bone-soft hover:text-accent-light' : 'text-ink-soft hover:text-accent'
-            }`}
-          >
-            <IconGithub />
-            Source
-          </a>
-        )}
-      </div>
-
-      <div className={`flex flex-wrap gap-x-8 gap-y-2 mb-4 pb-4 border-b ${darkMode ? 'border-rule-dark' : 'border-rule'}`}>
-        {project.metrics.map(m => (
-          <div key={m.label}>
-            <div className={`font-mono tabular-nums text-lg font-medium ${darkMode ? 'text-accent-light' : 'text-accent'}`}>
-              {m.value}
-            </div>
-            <div className={`text-xs mt-0.5 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>{m.label}</div>
+      <div className="flip-card-inner">
+        {/* Front: facts */}
+        <div className={face}>
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <h3 className={`font-serif text-lg font-semibold leading-snug ${darkMode ? 'text-bone' : 'text-ink'}`}>
+              {project.title}
+            </h3>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={e => e.stopPropagation()}
+                className={`flex-shrink-0 transition-colors ${darkMode ? 'text-bone-soft hover:text-accent-light' : 'text-ink-soft hover:text-accent'}`}
+              >
+                <IconGithub />
+              </a>
+            )}
           </div>
-        ))}
-      </div>
 
-      <p className={`text-sm leading-relaxed mb-4 max-w-3xl ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
-        {project.description}
-      </p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4">
+            {project.metrics.map(m => (
+              <div key={m.label}>
+                <div className={`font-mono tabular-nums text-base font-medium ${darkMode ? 'text-accent-light' : 'text-accent'}`}>
+                  {m.value}
+                </div>
+                <div className={`text-[11px] mt-0.5 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>{m.label}</div>
+              </div>
+            ))}
+          </div>
 
-      <div className="flex flex-wrap gap-1.5">
-        {project.tags.map(t => (
-          <span
-            key={t}
-            className={`px-2 py-0.5 text-xs font-mono border ${darkMode ? 'border-rule-dark text-bone-soft' : 'border-rule text-ink-soft'}`}
-          >
-            {t}
-          </span>
-        ))}
+          <div className="flex flex-wrap gap-1.5">
+            {project.tags.map(t => <span key={t} className={tagClass}>{t}</span>)}
+          </div>
+
+          <div className={`mt-auto pt-3 text-[11px] font-mono ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+            Click for description
+          </div>
+        </div>
+
+        {/* Back: description */}
+        <div className={`${face} flip-card-back overflow-y-auto`}>
+          <h3 className={`font-serif text-base font-semibold leading-snug mb-2 ${darkMode ? 'text-bone' : 'text-ink'}`}>
+            {project.title}
+          </h3>
+          <p className={`text-sm leading-relaxed ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+            {project.description}
+          </p>
+          <div className={`mt-3 text-[11px] font-mono ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+            Click to go back
+          </div>
+        </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
 export default function Projects({ darkMode }) {
   return (
     <SectionWrapper id="projects" className={darkMode ? 'bg-charcoal' : 'bg-paper'}>
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           eyebrow="Projects"
           title="Key Projects"
-          subtitle="Quantitative research, derivative pricing, and AI-driven systems. All results are real."
+          subtitle="Quantitative research, derivative pricing, and AI-driven systems. All results are real. Click a card to read the write-up."
           darkMode={darkMode}
         />
 
-        <div className={`divide-y border-t border-b ${darkMode ? 'divide-rule-dark border-rule-dark' : 'divide-rule border-rule'}`}>
-          {PROJECTS.map((project, i) => (
-            <ProjectRow key={project.title} project={project} index={i} darkMode={darkMode} />
+        <div className="grid sm:grid-cols-2 gap-6">
+          {PROJECTS.map(project => (
+            <ProjectCard key={project.title} project={project} darkMode={darkMode} />
           ))}
         </div>
       </div>

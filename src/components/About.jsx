@@ -20,7 +20,7 @@ export default function About({ darkMode }) {
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader eyebrow="About" title="Finance + Engineering + AI" darkMode={darkMode} />
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Text */}
           <div className="space-y-6">
             <p className={`text-base leading-relaxed ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>

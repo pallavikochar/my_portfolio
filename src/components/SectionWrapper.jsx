@@ -12,7 +12,7 @@ export default function SectionWrapper({ children, id, className = '' }) {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`py-24 ${className}`}
+      className={`py-16 sm:py-20 ${className}`}
     >
       {children}
     </motion.section>
@@ -21,8 +21,8 @@ export default function SectionWrapper({ children, id, className = '' }) {
 
 export function SectionHeader({ eyebrow, title, subtitle, darkMode }) {
   return (
-    <div className="mb-16">
-      <div className={`flex items-center gap-2.5 mb-3 text-sm font-mono ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+    <div className="mb-10 sm:mb-12">
+      <div className={`flex items-center gap-2.5 mb-2.5 text-sm font-mono ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
         <span className={`h-px w-5 ${darkMode ? 'bg-bone-soft' : 'bg-ink-soft'}`} />
         {eyebrow}
       </div>
@@ -30,7 +30,7 @@ export function SectionHeader({ eyebrow, title, subtitle, darkMode }) {
         {title}
       </h2>
       {subtitle && (
-        <p className={`mt-4 text-base max-w-2xl ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+        <p className={`mt-3 text-base max-w-2xl ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
           {subtitle}
         </p>
       )}
