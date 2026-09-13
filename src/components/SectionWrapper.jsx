@@ -22,9 +22,9 @@ export default function SectionWrapper({ children, id, className = '' }) {
 export function SectionHeader({ eyebrow, title, subtitle, darkMode }) {
   return (
     <div className="mb-16">
-      <div className={`text-sm font-mono mb-3 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
-        <span className={darkMode ? 'text-accent-light' : 'text-accent'}>{'// '}</span>
-        {eyebrow.toLowerCase()}
+      <div className={`flex items-center gap-2.5 mb-3 text-sm font-mono ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+        <span className={`h-px w-5 ${darkMode ? 'bg-bone-soft' : 'bg-ink-soft'}`} />
+        {eyebrow}
       </div>
       <h2 className={`font-serif text-3xl sm:text-4xl font-semibold ${darkMode ? 'text-bone' : 'text-ink'}`}>
         {title}

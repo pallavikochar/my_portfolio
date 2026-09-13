@@ -54,9 +54,9 @@ export default function Hero({ darkMode }) {
         animate="show"
         className="max-w-5xl mx-auto px-6"
       >
-        <motion.div variants={item} className={`text-sm font-mono mb-6 ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
-          <span className={darkMode ? 'text-accent-light' : 'text-accent'}>{'// '}</span>
-          pallavi kochar, quantitative research and systems engineering
+        <motion.div variants={item} className={`flex items-center gap-2.5 mb-6 text-sm font-mono ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
+          <span className={`h-px w-5 ${darkMode ? 'bg-bone-soft' : 'bg-ink-soft'}`} />
+          Pallavi Kochar, quantitative research and systems engineering
         </motion.div>
 
         <motion.h1

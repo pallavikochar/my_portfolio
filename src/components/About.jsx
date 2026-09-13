@@ -3,9 +3,9 @@ import { useRef } from 'react'
 import SectionWrapper, { SectionHeader } from './SectionWrapper'
 
 const HONORS = [
-  { title: '3+ years', meta: 'Work experience' },
-  { title: 'Top 0.1% in JEE', meta: 'IIT Bombay, Jul 2018' },
-  { title: 'Fast-tracked promotion', meta: 'Kotak Securities, 3 designations in 2 years' },
+  { title: '3+ Years', meta: 'Work Experience' },
+  { title: 'Top 0.1% in JEE Examination', meta: 'IIT Bombay, Jul 2018' },
+  { title: 'Fast-tracked Promotion', meta: 'Kotak Securities, 3 designations in 2 years' },
   { title: 'IT Champion Award', meta: 'Kotak Securities, FY 2023 to 24' },
 ]
 
@@ -18,7 +18,7 @@ export default function About({ darkMode }) {
   return (
     <SectionWrapper id="about" className={darkMode ? 'bg-charcoal' : 'bg-paper'}>
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeader eyebrow="About" title="Finance, engineering, and AI" darkMode={darkMode} />
+        <SectionHeader eyebrow="About" title="Finance + Engineering + AI" darkMode={darkMode} />
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Text */}
@@ -28,7 +28,7 @@ export default function About({ darkMode }) {
               <span className={`font-semibold ${darkMode ? 'text-bone' : 'text-ink'}`}>IIT Bombay</span> (B.Tech,
               Chemical Engineering), deep financial theory from{' '}
               <span className={`font-semibold ${darkMode ? 'text-bone' : 'text-ink'}`}>UIUC's Gies College of Business</span>{' '}
-              (MS Finance, concentration in Quantitative Finance and Data Analytics, 3.9/4.0 GPA), and three years of
+              (MS Finance, concentration in Quantitative Finance & Data Analytics, 3.9/4.0 GPA), and three years of
               production backend engineering at{' '}
               <span className={`font-semibold ${darkMode ? 'text-bone' : 'text-ink'}`}>Kotak Securities</span>.
             </p>
