@@ -167,7 +167,7 @@ export default function Hero({ darkMode }) {
             View work
           </button>
           <a
-            href="/Resume.pdf"
+            href={`${import.meta.env.BASE_URL}Resume.pdf`}
             target="_blank"
             rel="noopener noreferrer"
             className={`text-sm font-semibold border-b pb-0.5 transition-colors ${
@@ -176,7 +176,7 @@ export default function Hero({ darkMode }) {
                 : 'text-ink border-ink-soft hover:border-accent hover:text-accent'
             }`}
           >
-            Résumé
+            Resume
           </a>
           <button
             onClick={() => handleScroll('contact')}
