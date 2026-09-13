@@ -142,9 +142,7 @@ export default function Hero({ darkMode }) {
             darkMode ? 'text-bone' : 'text-ink'
           }`}
         >
-          Derives the GARCH log-likelihood by hand.
-          <br />
-          Ships the pipeline that trades on it.
+          Quantitative finance professional building at the intersection of markets, data, and AI
         </motion.h1>
 
         <motion.p
