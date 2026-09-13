@@ -138,7 +138,7 @@ export default function Experience({ darkMode }) {
       <div className="max-w-4xl mx-auto px-6">
         <SectionHeader
           eyebrow="Experience"
-          title="Where I've worked"
+          title="Professional Experience"
           subtitle="Three years of production engineering, quant research internships, and AI/ML development."
           darkMode={darkMode}
         />
