@@ -17,6 +17,83 @@ function IconLinkedin({ size = 20 }) {
   )
 }
 
+// A single static motif: a price chart (the market) read by a connected trace
+// and square nodes (the systems that watch it). Deterministic, not random, and
+// never animated beyond the section's own one-time fade-in.
+const CANDLES = (() => {
+  const n = 32
+  const candles = []
+  let prevClose = 30
+  for (let i = 0; i < n; i++) {
+    const trend = i * 1.1
+    const wiggle = Math.sin(i * 0.9) * 6 + Math.sin(i * 2.3) * 2.5
+    const close = 30 + trend + wiggle
+    const open = prevClose
+    const wick = 2 + Math.abs(Math.sin(i * 1.7)) * 3
+    const high = Math.max(open, close) + wick
+    const low = Math.min(open, close) - wick
+    candles.push({ x: i * (200 / n) + 2, open, close, high, low })
+    prevClose = close
+  }
+  return candles
+})()
+
+function MarketBackground({ darkMode }) {
+  const candleW = (200 / CANDLES.length) * 0.55
+  const line = CANDLES.map(c => `${c.x},${60 - c.close * 0.42}`).join(' ')
+
+  return (
+    <svg
+      className="absolute inset-0 w-full h-full"
+      viewBox="0 0 200 60"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      {CANDLES.map((c, i) => {
+        const up = c.close >= c.open
+        const color = up
+          ? (darkMode ? '#4E9B74' : '#1F6F4A')
+          : (darkMode ? '#C1615A' : '#A32F2F')
+        const yOpen = 60 - c.open * 0.42
+        const yClose = 60 - c.close * 0.42
+        const yHigh = 60 - c.high * 0.42
+        const yLow = 60 - c.low * 0.42
+        return (
+          <g key={i} opacity={darkMode ? 0.16 : 0.14}>
+            <line x1={c.x} y1={yHigh} x2={c.x} y2={yLow} stroke={color} strokeWidth="0.3" vectorEffect="non-scaling-stroke" />
+            <rect
+              x={c.x - candleW / 2}
+              y={Math.min(yOpen, yClose)}
+              width={candleW}
+              height={Math.max(Math.abs(yClose - yOpen), 0.4)}
+              fill={color}
+            />
+          </g>
+        )
+      })}
+      <polyline
+        points={line}
+        fill="none"
+        stroke={darkMode ? '#7B9CC4' : '#1E3A5F'}
+        strokeWidth="0.35"
+        vectorEffect="non-scaling-stroke"
+        opacity={darkMode ? 0.22 : 0.18}
+      />
+      {CANDLES.filter((_, i) => i % 3 === 0).map((c, i) => (
+        <rect
+          key={i}
+          x={c.x - 0.6}
+          y={60 - c.close * 0.42 - 0.6}
+          width="1.2"
+          height="1.2"
+          fill={darkMode ? '#7B9CC4' : '#1E3A5F'}
+          opacity={darkMode ? 0.3 : 0.25}
+        />
+      ))}
+    </svg>
+  )
+}
+
 // Real results, shown once as a static table, not a decorative scrolling ticker.
 const METRICS = [
   { value: '13.9%', label: 'CAGR' },
@@ -46,13 +123,13 @@ export default function Hero({ darkMode }) {
   return (
     <section
       id="hero"
-      className={`relative pt-36 pb-20 ${darkMode ? 'bg-charcoal' : 'bg-paper'}`}
+      className={`relative pt-36 pb-0 overflow-hidden ${darkMode ? 'bg-charcoal' : 'bg-paper'}`}
     >
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="max-w-5xl mx-auto px-6"
+        className="relative z-10 max-w-5xl mx-auto px-6"
       >
         <motion.div variants={item} className={`flex items-center gap-2.5 mb-6 text-sm font-mono ${darkMode ? 'text-bone-soft' : 'text-ink-soft'}`}>
           <span className={`h-px w-5 ${darkMode ? 'bg-bone-soft' : 'bg-ink-soft'}`} />
@@ -163,6 +240,10 @@ export default function Hero({ darkMode }) {
           ))}
         </motion.div>
       </motion.div>
+
+      <div className={`relative h-28 sm:h-36 mt-16 border-t ${darkMode ? 'border-rule-dark' : 'border-rule'}`}>
+        <MarketBackground darkMode={darkMode} />
+      </div>
     </section>
   )
 }
